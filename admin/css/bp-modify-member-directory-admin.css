@@ -1,0 +1,40 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+ .bpmpd-setting-page .bpmpd-fields {
+    -moz-columns: 4 auto;
+    -webkit-column-count:4;
+    column-count: 4;
+}
+
+.bpmpd-setting-page h1.bpmpd-page-title {
+    padding: 1%;
+    text-align: center;
+}
+
+.bpmpd-setting-page h4 {
+    font-size: 1.2em;
+    padding: 1%;
+}
+.bpmpd-setting-page h5 {
+    font-size: 1.1em;
+}
+
+.bpmpd-setting-page .bpmpd-fields > li {
+    font-size: 1.1em;
+}
+
+.bpmpd-setting-page .bpmpd-submit .button-primary {
+    font-size: 1.6em;
+    font-weight: 500;
+    height: 46px;
+    margin: 2%;
+    width: 11%;
+}
+
+.bpmpd-setting-page {
+    background: #fff none repeat scroll 0 0;
+    padding: 2%;
+}
