@@ -1,10 +1,10 @@
 === BP Modify Member Directory/Header ===
-Contributors: vapvarun,wbcomdesigns
+Contributors: wbcomdesigns
 Tags: buddypress,member-directory, header, member loop
 Donate link: https://wbcomdesigns.com/donate/
 Requires at least: 4.7
-Tested up to: 4.7.2
-Stable tag: 4.6
+Tested up to: 4.8.1
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
