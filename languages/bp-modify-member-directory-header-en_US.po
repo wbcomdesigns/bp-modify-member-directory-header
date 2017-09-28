@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BP Modify Member Directory Header 1.0.0\n"
+"POT-Creation-Date: 2017-09-28 17:50+0530\n"
+"PO-Revision-Date: 2017-09-28 17:51+0530\n"
+"Last-Translator: \n"
+"Language-Team: wbcomdesigns\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-bp-modify-member-directory-admin.php:177
+msgid "BP Modify Member Directory/Header Setting Page"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:181
+msgid "(A). Select fields from each group to show on members loop page"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:208
+msgid "(B.) Select fields from each group to show on single members page"
+msgstr ""
+
+#: bp-modify-member-directory.php:94
+msgid "To work BP Modify Member Directory, BuddyPress should be activated"
+msgstr ""
+
+#: bp-modify-member-directory.php:107
+msgid "Settings"
+msgstr ""
