@@ -136,15 +136,11 @@ class Bp_Modify_Member_Directory_Public {
 							foreach($profile_group->fields as $profile_field){
 
 								if(in_array($profile_field->id,$mergerd_loop_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
-									$profile_data = xprofile_get_field_data ( $profile_field->name, $user_id);
+									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
 									if( !empty( $profile_data )  ) { ?>
 									<li><?php echo $profile_field->name." : "; ?>
 										<span>
-										<?php if( is_array( $profile_data) ) {
-											bp_member_profile_data('field='.$profile_field->name);
-										} else {
-											echo $profile_data;
-										} ?>
+											<?php bp_member_profile_data('field='.$profile_field->name); ?>
 										</span>
 									</li>
 							<?php } }
@@ -194,17 +190,13 @@ class Bp_Modify_Member_Directory_Public {
 							foreach($profile_group->fields as $profile_field){
 
 								if(in_array($profile_field->id,$mergerd_member_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
-									$profile_data = xprofile_get_field_data ( $profile_field->name, $user_id);
+									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
 									if( !empty( $profile_data )  ) { ?>
-									<li><?php echo $profile_field->name." : "; ?>
+									<div><?php echo $profile_field->name." : "; ?>
 										<span>
-										<?php if( is_array( $profile_data) ) {
-											bp_member_profile_data('field='.$profile_field->name);
-										} else {
-											echo $profile_data;
-										} ?>
+											<?php bp_member_profile_data('field='.$profile_field->name); ?>
 										</span>
-									</li>
+									</div>
 							<?php }	}
 							}
 						}
