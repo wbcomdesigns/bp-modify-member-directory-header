@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * The plugin bootstrap file
  *
@@ -45,27 +45,6 @@ if (!in_array('buddypress/bp-loader.php', apply_filters('active_plugins', get_op
 	 }
 	 return;
 }
-
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-bp-modify-member-directory-activator.php
- */
-function activate_bp_modify_member_directory() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-bp-modify-member-directory-activator.php';
-	Bp_Modify_Member_Directory_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-bp-modify-member-directory-deactivator.php
- */
-function deactivate_bp_modify_member_directory() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-bp-modify-member-directory-deactivator.php';
-	Bp_Modify_Member_Directory_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_bp_modify_member_directory' );
-register_deactivation_hook( __FILE__, 'deactivate_bp_modify_member_directory' );
 
 /**
  * The core plugin class that is used to define internationalization,
