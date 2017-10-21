@@ -3,6 +3,11 @@
  * included in this file.
  */
 
+@font-face {
+    font-family: FontAwesome;
+    src: url('../fonts/FontAwesome.otf');
+}
+
  .bpmpd-setting-page .bpmpd-fields {
     -moz-columns: 4 auto;
     -webkit-column-count:4;
@@ -18,6 +23,7 @@
     font-size: 1.2em;
     padding: 1%;
 }
+
 .bpmpd-setting-page h5 {
     font-size: 1.1em;
 }
@@ -30,4 +36,16 @@
 .bpmpd-setting-page {
     background: #fff none repeat scroll 0 0;
     padding: 2%;
+}
+
+.bpmmd-extra-actions {
+    float: right;
+}
+
+#bpmmd_faq_accordion {
+    margin: 20px;
+}
+
+#bpmmd_faq_accordion .ui-accordion-header span {
+    margin-right: 10px;
 }

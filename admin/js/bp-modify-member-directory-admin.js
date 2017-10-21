@@ -30,3 +30,11 @@
 	 */
 
 })( jQuery );
+
+jQuery(document).ready(function($) {
+	jQuery( "#bpmmd_faq_accordion" ).accordion({
+	    collapsible: true,
+	    heightStyle: "content"
+  	});
+});
+
