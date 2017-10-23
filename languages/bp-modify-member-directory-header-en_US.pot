@@ -1,9 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: BP Modify Member Directory Header 1.0.0\n"
-"POT-Creation-Date: 2017-09-28 17:50+0530\n"
-"PO-Revision-Date: 2017-09-28 17:53+0530\n"
+"Project-Id-Version: BP Modify Member Directory/Header\n"
+"POT-Creation-Date: 2017-10-23 13:07+0530\n"
+"PO-Revision-Date: 2017-10-23 13:08+0530\n"
+"Last-Translator: \n"
 "Language-Team: wbcomdesigns\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,26 +14,105 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
-"Last-Translator: \n"
-"Language: en_US\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/class-bp-modify-member-directory-admin.php:177
-msgid "BP Modify Member Directory/Header Setting Page"
+#: admin/class-bp-modify-member-directory-admin.php:123
+msgid "Email Support"
 msgstr ""
 
-#: admin/class-bp-modify-member-directory-admin.php:181
-msgid "(A). Select fields from each group to show on members loop page"
+#: admin/class-bp-modify-member-directory-admin.php:124
+msgid "User Manual"
 msgstr ""
 
-#: admin/class-bp-modify-member-directory-admin.php:208
-msgid "(B.) Select fields from each group to show on single members page"
+#: admin/class-bp-modify-member-directory-admin.php:125
+msgid "Rate Us on WordPress.org"
 msgstr ""
 
-#: bp-modify-member-directory.php:94
+#: admin/class-bp-modify-member-directory-admin.php:128
+msgid "BP Modify Member Directory/Header Settings"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:135
+msgid "General"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:136
+msgid "FAQ"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:226
+msgid "Select fields from each group to show on members loop page"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:234
+#: admin/class-bp-modify-member-directory-admin.php:260
+msgid "Field Group : "
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:254
+msgid "Select fields from each group to show on single members page"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:279
+msgid "Save"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:286
+msgid "Is this plugin requires another plugin?"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:289
+msgid "Yes, this plugin requires BuddyPress plugin."
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:292
+msgid "What does this plugin work?"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:295
+msgid ""
+"This plugin adds option for admin to select which xprofile field will be "
+"displayed inside members loop and on profile header."
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:298
+msgid "How to display some xprofile field inside BuddyPress members loop?"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:301
+msgid ""
+"This plugin includes settings to display xprofile fields with field group "
+"name, here you can enable those fields which you want to display inside "
+"members loop."
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:304
+msgid ""
+"How to display some xprofile field on BuddyPress single page profile header?"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:307
+msgid ""
+"This plugin includes settings to display xprofile fields with field group "
+"name, here you can enable those fields which you want to display on "
+"BuddyPress single page profile header."
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:310
+msgid "Where do I ask for support?"
+msgstr ""
+
+#: admin/class-bp-modify-member-directory-admin.php:313
+msgid ""
+"Please visit <a href=\"http://wbcomdesigns.com/contact\" rel=\"nofollow\" "
+"target=\"_blank\">Wbcom Designs</a> for any query related to plugin and "
+"BuddyPress."
+msgstr ""
+
+#: bp-modify-member-directory.php:77
 msgid "To work BP Modify Member Directory, BuddyPress should be activated"
 msgstr ""
 
-#: bp-modify-member-directory.php:107
+#: bp-modify-member-directory.php:90
 msgid "Settings"
 msgstr ""
