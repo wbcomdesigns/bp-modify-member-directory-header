@@ -121,8 +121,8 @@ class Bp_Modify_Member_Directory_Admin {
 				<div class="bpmmd-header">
 					<div class="bpmmd-extra-actions">
 						<button type="button" class="button button-secondary" onclick="window.open('https://wbcomdesigns.com/contact/', '_blank');"><i class="fa fa-envelope" aria-hidden="true"></i> <?php _e( 'Email Support', BPMMD_TEXT_DOMAIN )?></button>
-						<button type="button" class="button button-secondary" onclick="window.open('https://wbcomdesigns.com/helpdesk/article-categories/buddypress-activity-filter/', '_blank');"><i class="fa fa-file" aria-hidden="true"></i> <?php _e( 'User Manual', BPMMD_TEXT_DOMAIN )?></button>
-						<button type="button" class="button button-secondary" onclick="window.open('https://wordpress.org/support/plugin/bp-activity-filter/reviews/', '_blank');"><i class="fa fa-star" aria-hidden="true"></i> <?php _e( 'Rate Us on WordPress.org', BPMMD_TEXT_DOMAIN )?></button>
+						<button type="button" class="button button-secondary" onclick="window.open('https://wbcomdesigns.com/helpdesk/article-categories/bp-modify-member-directory/', '_blank');"><i class="fa fa-file" aria-hidden="true"></i> <?php _e( 'User Manual', BPMMD_TEXT_DOMAIN )?></button>
+						<button type="button" class="button button-secondary" onclick="window.open('https://wordpress.org/support/plugin/bp-modify-member-directory/reviews/', '_blank');"><i class="fa fa-star" aria-hidden="true"></i> <?php _e( 'Rate Us on WordPress.org', BPMMD_TEXT_DOMAIN )?></button>
 					</div>
 				</div>
 				<h1><?php _e('BP Modify Member Directory/Header Settings', BPMMD_TEXT_DOMAIN ); ?></h1>
@@ -221,67 +221,64 @@ class Bp_Modify_Member_Directory_Admin {
 				}
 			}
 			?>
-			<form method="post" action="">
+			<form method="post" action="" class="bpmmd-general-settings">
 				<?php wp_nonce_field('bpmpd_fields_nonce_action','bpmpd_fields_nonce_value'); ?>
-				<h4><?php _e('(A). Select fields from each group to show on members loop page',$this->plugin_name);?>
-				</h4>
+				<h2><?php _e('Select fields from each group to show on members loop page',$this->plugin_name);?>
+				</h2>
+				<table class="form-table" >
 				<?php
 				if(!empty($profile_groups)):
 					$i=1;
-					foreach( $profile_groups as $profile_group):?>
-						<h5><?php echo "($i). Field Group : "; echo $profile_group->name; ?></h5>
-						<?php if (!empty($profile_group->fields)):?>
-								<ul class="bpmpd-fields">
-								<?php foreach ($profile_group->fields as $field):?>
+					foreach( $profile_groups as $profile_group): ?>
+						<tr>
+							<th scope="row"><label class="field-description" ><?php _e( 'Field Group : ', BPMMD_TEXT_DOMAIN ); echo $profile_group->name; ?></label></th>
+							<td>
+								<?php if (!empty($profile_group->fields)):?>
+									<table class="bpmpd-fields">
+									<?php foreach ($profile_group->fields as $field):?>
+										<tr>
+											<td>
+												<input type="checkbox" name="<?php echo $profile_group->id?>-loop[]" value="<?php echo $field->id; ?>" <?php echo (isset($bpmpd_fields_get_db['0']) && in_array($field->id,$mergerd_loop_array))?'checked':'';?>>
+												<?php echo $field->name;?>
+											</td>
+										</tr>
+									<?php endforeach; ?>
 
-									<li>
-										<input type="checkbox" name="<?php echo $profile_group->id?>-loop[]" value="<?php echo $field->id; ?>" <?php echo (isset($bpmpd_fields_get_db['0']) && in_array($field->id,$mergerd_loop_array))?'checked':'';?>>
-										<?php echo $field->name;?>
+									</table>
 
-									</li>
-								<?php endforeach;?>
-
-								</ul>
-
-							<?php endif; $i++;?>
-
+								<?php endif; $i++; ?>
+							</td>
+						</tr>
 					<?php endforeach;?>
-
-						<h4><?php _e('(B.) Select fields from each group to show on single members page',$this->plugin_name);?>
-						</h4>
-
-						<?php $j=1;
-							foreach( $profile_groups as $profile_group):?>
-
-							<h5><?php echo "($j). Field Group : "; echo $profile_group->name; ?></h5>
-
-						<?php if (!empty($profile_group->fields)):?>
-
-								<ul class="bpmpd-fields">
-
-								<?php foreach ($profile_group->fields as $field): ?>
-
-									<li>
-										<input type="checkbox" name="<?php echo $profile_group->id;?>-single[]" value="<?php echo $field->id; ?>" <?php echo (isset($bpmpd_fields_get_db['1']) && in_array($field->id,$mergerd_single_array))?'checked':'';?>><?php echo $field->name;?>
-									</li>
-
-								<?php endforeach; ?>
-
-								</ul>
-
-							<?php endif; $j++;?>
-
+				</table>
+				<h2><?php _e('Select fields from each group to show on single members page', BPMMD_TEXT_DOMAIN ); ?>
+				</h2>
+				<table class="form-table" >
+					<?php $j=1;
+						foreach( $profile_groups as $profile_group ): ?>
+							<tr>
+								<th scope="row"><label class="field-description" ><?php _e( 'Field Group : ', BPMMD_TEXT_DOMAIN ); echo $profile_group->name; ?></label></th>
+								<td>
+								<?php if (!empty($profile_group->fields)):?>
+									<table class="bpmpd-fields">
+									<?php foreach ($profile_group->fields as $field): ?>
+										<tr>
+											<td>
+												<input type="checkbox" name="<?php echo $profile_group->id;?>-single[]" value="<?php echo $field->id; ?>" <?php echo (isset($bpmpd_fields_get_db['1']) && in_array($field->id,$mergerd_single_array))?'checked':'';?>><?php echo $field->name;?>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+									</table>
+								<?php endif; $j++;?>
+								</td>
+							</tr>
 					<?php endforeach;?>
-
-				  <?php endif;?>
-
-				  <div class="bpmpd-submit">
-
-				  	<input type="submit" name="bpmpd-fields-submit" value="Save" class="button-primary">
-
-				  </div>
-
-				</form>
+			  	</table>
+		  	<?php endif;?>
+		  	<div class="bpmpd-submit">
+			  	<input type="submit" name="bpmpd-fields-submit" value="<?php _e( 'Save', BPMMD_TEXT_DOMAIN ); ?>" class="button-primary">
+			</div>
+		</form>
 	<?php }
 
 	public function bpmmd_faq_section() { ?>
@@ -292,10 +289,22 @@ class Bp_Modify_Member_Directory_Admin {
 					<?php _e( 'Yes, this plugin requires BuddyPress plugin.', BPMMD_TEXT_DOMAIN ); ?>
 				</p>
 			</div>
-			<h3><?php _e( 'By default, which filters will be displayed in activity dropdown?', BPMMD_TEXT_DOMAIN ); ?></h3>
+			<h3><?php _e( 'What does this plugin work?', BPMMD_TEXT_DOMAIN ); ?></h3>
 			<div>
 				<p>
-					<?php _e( 'By default, all filters will be displayed.', BPMMD_TEXT_DOMAIN ); ?>
+					<?php _e( 'This plugin adds option for admin to select which xprofile field will be displayed inside members loop and on profile header.', BPMMD_TEXT_DOMAIN ); ?>
+				</p>
+			</div>
+			<h3><?php _e( 'How to display some xprofile field inside BuddyPress members loop?', BPMMD_TEXT_DOMAIN ); ?></h3>
+			<div>
+				<p>
+					<?php _e( 'This plugin includes settings to display xprofile fields with field group name, here you can enable those fields which you want to display inside members loop.', BPMMD_TEXT_DOMAIN ); ?>
+				</p>
+			</div>
+			<h3><?php _e( 'How to display some xprofile field on BuddyPress single page profile header?', BPMMD_TEXT_DOMAIN ); ?></h3>
+			<div>
+				<p>
+					<?php _e( 'This plugin includes settings to display xprofile fields with field group name, here you can enable those fields which you want to display on BuddyPress single page profile header.', BPMMD_TEXT_DOMAIN ); ?>
 				</p>
 			</div>
 			<h3><?php _e( 'Where do I ask for support?', BPMMD_TEXT_DOMAIN ); ?></h3>

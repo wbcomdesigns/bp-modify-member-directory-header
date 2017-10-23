@@ -9,7 +9,7 @@
   padding: 1%;
 }
 #buddypress .bpmpd-fields-loop li {
-  
+
   font-size: 14px;
   border: medium none !important;
 
@@ -19,4 +19,7 @@
 }
 .bpmpd-fields-loop ul {
     margin-bottom: 0px !important;
+}
+#members-dir-list .bpmpd-fields-loop li{
+    padding: 5px 0!important;
 }

@@ -49,3 +49,11 @@
 #bpmmd_faq_accordion .ui-accordion-header span {
     margin-right: 10px;
 }
+
+.bpmpd-fields td {
+    padding: 5px;
+}
+
+.bpmmd-general-settings h4 {
+    font-size: 15px;
+}
