@@ -13,7 +13,7 @@
  */
 ?>
 
-
+<div class="wbcom-tab-content">
 <div id="bpmmd_faq_accordion">
 	<h3><?php _e( 'Is this plugin requires another plugin?', BPMMD_TEXT_DOMAIN ); ?></h3>
 	<div>
@@ -45,4 +45,5 @@
 			<?php _e( 'Please visit <a href="http://wbcomdesigns.com/contact" rel="nofollow" target="_blank">Wbcom Designs</a> for any query related to plugin and BuddyPress.', BPMMD_TEXT_DOMAIN ); ?>
 		</p>
 	</div>
+</div>
 </div>

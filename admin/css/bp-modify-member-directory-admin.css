@@ -32,7 +32,6 @@
     font-size: 1.1em;
 }
 
-
 .bpmpd-setting-page {
     background: #fff none repeat scroll 0 0;
     padding: 2%;
@@ -56,4 +55,46 @@
 
 .bpmmd-general-settings h4 {
     font-size: 15px;
+}
+
+.bpmmd-general-settings h2 {
+    font-size: 22px;
+    font-weight:700;
+    line-height: 1;
+    margin: 0;
+    padding-bottom: 1em;
+    color: #333;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+}
+
+.bpmmd-general-settings h2:before {
+    content: "";
+    font-family: dashicons;
+    font-size: inherit;
+    left: 0;
+    background-color: #f6f6f6;
+    height: 38px;
+    width: 38px;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin-right: 15px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.bpmmd-general-settings h2:before {
+    content: "\f307";
+}
+
+.bpmmd-general-settings h2.members-loop:before {
+    content: "\f12e";
 }
