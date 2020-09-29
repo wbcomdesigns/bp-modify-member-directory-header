@@ -636,7 +636,6 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 
 				<div id="wb_admin_logo">
 					<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/logowbcom.png'; ?>">
-					<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/logowbcom.png'; ?>">
 					<div class="wb_admin_right"></div>
 				</div>
 

@@ -211,7 +211,7 @@ class Bp_Modify_Member_Directory_Admin {
 
 
 	public function bpmmd_general_settings_section() {
-		include BPMMD_PLUGIN_PATH . 'admin/partials/bp-modify-member-directory-genral-setting-display.php';
+		include BPMMD_PLUGIN_PATH . 'admin/partials/bp-modify-member-directory-genral-display.php';
 
 	}
 

@@ -113,14 +113,19 @@ class Bp_Modify_Member_Directory {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-bp-modify-member-directory-admin.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the admin area.
+		 * The class responsible for wbcom wrapper.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-admin-settings.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the admin area.
+		 * The class responsible for plugin settings page.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-plugin-settings.php';
+
+		/**
+		 * The class responsible for license page for easy updation.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'edd-license/edd-plugin-license.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -179,7 +184,7 @@ class Bp_Modify_Member_Directory {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'bp_directory_members_actions', $plugin_public, 'member_loop_modification_function' );
+		$this->loader->add_action( 'bp_directory_members_actions', $plugin_public, 'member_loop_modification_function', 999 );
 
 		$this->loader->add_action( 'bp_before_member_header_meta', $plugin_public, 'member_header_modification_function' );
 	}

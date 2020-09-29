@@ -32,6 +32,12 @@ if ( ! defined( 'WPINC' ) ) {
 if ( ! defined( 'BPMMD_TEXT_DOMAIN' ) ) {
 	define( 'BPMMD_TEXT_DOMAIN', 'bp-modify-member-directory' );
 }
+if ( ! defined( 'BPMMD_PLUGIN_VERSION' ) ) {
+	define( 'BPMMD_PLUGIN_VERSION', '1.0.0' );
+}
+if ( ! defined( 'BPMMD_PLUGIN_FILE' ) ) {
+	define( 'BPMMD_PLUGIN_FILE', __FILE__ );
+}
 if ( ! defined( 'BPMMD_PLUGIN_URL' ) ) {
 	define( 'BPMMD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 }
