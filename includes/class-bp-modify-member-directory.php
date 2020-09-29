@@ -68,7 +68,7 @@ class Bp_Modify_Member_Directory {
 	public function __construct() {
 
 		$this->plugin_name = 'bp-modify-member-directory';
-		$this->version = '1.0.0';
+		$this->version     = '1.0.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -113,6 +113,16 @@ class Bp_Modify_Member_Directory {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-bp-modify-member-directory-admin.php';
 
 		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-admin-settings.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-plugin-settings.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -152,7 +162,7 @@ class Bp_Modify_Member_Directory {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu_link_function' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'bpmmd_admin_menu' );
 	}
 
 	/**

@@ -43,13 +43,13 @@ class Bp_Modify_Member_Directory_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -71,7 +71,7 @@ class Bp_Modify_Member_Directory_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_register_style( 'font_awesome_css', plugin_dir_url( __FILE__ ) .'css/font-awesome.min.css', array(), $this->version, 'all' );
+		wp_register_style( 'font_awesome_css', plugin_dir_url( __FILE__ ) . 'css/font-awesome.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'font_awesome_css' );
 		wp_enqueue_style( 'jquery-ui-css', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bp-modify-member-directory-admin.css', array(), $this->version, 'all' );
@@ -97,7 +97,7 @@ class Bp_Modify_Member_Directory_Admin {
 		 * class.
 		 */
 
-		if ( !wp_script_is( 'jquery-ui-accordion', 'enqueued' ) ) {
+		if ( ! wp_script_is( 'jquery-ui-accordion', 'enqueued' ) ) {
 			wp_enqueue_script( 'jquery-ui-accordion' );
 		}
 
@@ -107,181 +107,265 @@ class Bp_Modify_Member_Directory_Admin {
 	/*
 	*	Adding Options page
 	*/
-	public function admin_menu_link_function(){
-
-		add_options_page('BP Modify Member', 'BP Modify Member', 'manage_options', 'bp-modify-member-directory', array(&$this, 'bp_modify_profile_directory_function'));
-	}
-	/*
-	*  Creating listing of profile fields
-	*/
-	public function bp_modify_profile_directory_function(){
-		$tab = isset($_GET['tab']) ? $_GET['tab'] : 'bpmmd_general_settings'; ?>
-		<div id="wpbody-content" class="bpmmd-setting-page" aria-label="Main content" tabindex="0">
-			<div class="wrap">
-				<div class="bpmmd-header">
-					<div class="bpmmd-extra-actions">
-						<button type="button" class="button button-secondary" onclick="window.open('https://wbcomdesigns.com/contact/', '_blank');"><i class="fa fa-envelope" aria-hidden="true"></i> <?php _e( 'Email Support', BPMMD_TEXT_DOMAIN )?></button>
-						<button type="button" class="button button-secondary" onclick="window.open('https://wbcomdesigns.com/helpdesk/article-categories/bp-modify-member-directory/', '_blank');"><i class="fa fa-file" aria-hidden="true"></i> <?php _e( 'User Manual', BPMMD_TEXT_DOMAIN )?></button>
-						<button type="button" class="button button-secondary" onclick="window.open('https://wordpress.org/support/plugin/bp-modify-member-directory/reviews/', '_blank');"><i class="fa fa-star" aria-hidden="true"></i> <?php _e( 'Rate Us on WordPress.org', BPMMD_TEXT_DOMAIN )?></button>
-					</div>
-				</div>
-				<h1><?php _e('BP Modify Member Directory/Header Settings', BPMMD_TEXT_DOMAIN ); ?></h1>
-				<?php $this->bpmmd_plugin_settings_tabs($tab); ?>
-	<?php
+	public function admin_menu_link_function() {
+		add_options_page( 'BP Modify Member', 'BP Modify Member', 'manage_options', 'bp-modify-member-directory', array( &$this, 'bp_modify_profile_directory_function' ) );
 	}
 
-	public function bpmmd_plugin_settings_tabs( $current ){
+
+
+	/**
+	 * Register admin menu page for plugin
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @author   Wbcom Designs
+	 */
+	public function bpmmd_admin_menu() {
+
+		/**
+		 * This function is provided for demonstration purposes only.
+		 *
+		 * An instance of this class should be passed to the run() function
+		 * defined in Bp_Xprofile_Export_Import_Loader as all of the hooks are defined
+		 * in that particular class.
+		 *
+		 * The Bp_Xprofile_Export_Import_Loader will then create the relationship
+		 * between the defined hooks and the functions defined in this
+		 * class.
+		 */
+
+		if ( empty( $GLOBALS['admin_page_hooks']['wbcomplugins'] ) ) {
+			add_menu_page( esc_html__( 'WB Plugins', 'bp-xprofile-export-import' ), esc_html__( 'WB Plugins', 'bp-xprofile-export-import' ), 'manage_options', 'wbcomplugins', array( $this, 'bp_modify_profile_directory_setting_page' ), 'dashicons-lightbulb', 59 );
+			add_submenu_page( 'wbcomplugins', esc_html__( 'General', 'bp-xprofile-export-import' ), esc_html__( 'General', 'bp-xprofile-export-import' ), 'manage_options', 'wbcomplugins' );
+		}
+
+		add_submenu_page( 'wbcomplugins', esc_html__( 'BP Modify Member Directory/Header', 'bp-xprofile-export-import' ), esc_html__( 'BP Modify Member Directory/Header', 'bp-xprofile-export-import' ), 'manage_options', 'bpxp-member-export-import', array( $this, 'bp_modify_profile_directory_setting_page' ) );
+
+	}
+
+
+	/**
+	 * Callback function for bp member xprofile export import settings page.
+	 *
+	 * @since    1.0.0
+	 * @param    string $current       The current tab.
+	 */
+	public function bp_modify_profile_directory_setting_page() {
+		$current = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'bpmmd_general_settings';
+		?>
+		<div class="wrap">
+		<div class="blpro-header">
+			<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
+			<h1 class="wbcom-plugin-heading">
+				<?php esc_html_e( 'BuddyPress Member Export Import Settings', 'bp-xprofile-export-import' ); ?>
+			</h1>
+		</div>
+		<div class="wbcom-admin-settings-page">
+		<?php
 		$bpmmd_tabs = array(
-				'bpmmd_general_settings' => __('General', BPMMD_TEXT_DOMAIN),
-				'bpmmd_faq' => __('FAQ', BPMMD_TEXT_DOMAIN)
-			);
+			'bpmmd_general_settings' => __( 'General', BPMMD_TEXT_DOMAIN ),
+			'bpmmd_faq'              => __( 'FAQ', BPMMD_TEXT_DOMAIN ),
+		);
 
-			$tab_html =  '<h2 class="nav-tab-wrapper">';
-			foreach( $bpmmd_tabs as $bpmmd_tab => $bpmmd_name ){
-				$class = ($bpmmd_tab == $current) ? 'nav-tab-active' : '';
-				$tab_html .=  '<a class="nav-tab '.$class.'" href="admin.php?page=bp-modify-member-directory&tab=' . $bpmmd_tab . '">' . $bpmmd_name . '</a>';
-			}
-			$tab_html .= '</h2>';
-			echo $tab_html;
-			$this->bpmmd_include_admin_setting_tabs($current);
+		$tab_html = '<div class="wbcom-tabs-section"><h2 class="nav-tab-wrapper">';
+		foreach ( $bpmmd_tabs as $bpmmd_tab => $bpmmd_name ) {
+			$class     = ( $bpmmd_tab == $current ) ? 'nav-tab-active' : '';
+			$tab_html .= '<a class="nav-tab ' . $class . '" href="admin.php?page=bpxp-member-export-import&tab=' . $bpmmd_tab . '">' . $bpmmd_name . '</a>';
+		}
+		$tab_html .= '</h2></div>';
+		echo $tab_html;
+		$this->bpmmd_plugin_option_pages();
+		echo '</div>'; /* closing of div class wbcom-admin-settings-page */
+		echo '</div>'; /* closing div class wrap */
 	}
 
+
+	/**
+	 * Get desired options page file at admin settings end.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @author   Wbcom Designs
+	 */
+	public function bpmmd_plugin_option_pages() {
+		if ( isset( $_GET['tab'] ) ) {
+			$bpxp_tab = sanitize_text_field( $_GET['tab'] );
+		} else {
+			$bpxp_tab = 'general';
+		}
+		$this->bpmmd_include_admin_setting_tabs( $bpxp_tab );
+	}
+
+	/**
+	 * Include setting template.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @author   Wbcom Designs
+	 */
 	public function bpmmd_include_admin_setting_tabs( $current ) {
-	    $bpmmd = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : $current;
-	    switch($bpmmd){
-	        case 'bpmmd_general_settings'	: 	$this->bpmmd_general_settings_section();
-	            								break;
-	        case 'bpmmd_faq'             	:	$this->bpmmd_faq_section();
-	               								break;
-	        default                     	:  	$this->bpmmd_general_settings_section();
-	            								break;
-	    }
+		$bpmmd = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : $current;
+		switch ( $bpmmd ) {
+			case 'bpmmd_general_settings':
+				$this->bpmmd_general_settings_section();
+				break;
+			case 'bpmmd_faq':
+				$this->bpmmd_faq_section();
+				break;
+			default:
+				$this->bpmmd_general_settings_section();
+				break;
+		}
 	}
+
 
 	public function bpmmd_general_settings_section() {
 
-		$profile_groups = BP_XProfile_Group::get(array('fetch_fields'=>true));
+		$profile_groups = BP_XProfile_Group::get( array( 'fetch_fields' => true ) );
 
 		// Submitting form on admin page and saving to DB
 
-		if(isset($_POST['bpmpd-fields-submit']) && check_admin_referer('bpmpd_fields_nonce_action','bpmpd_fields_nonce_value')):
+		if ( isset( $_POST['bpmpd-fields-submit'] ) && check_admin_referer( 'bpmpd_fields_nonce_action', 'bpmpd_fields_nonce_value' ) ) :
 			$bpmpd_fields_loops = array();
 
-			if(!empty($profile_groups)){
-				foreach ($profile_groups as $profile_group) {
-					$bpmpd_fields_loops[$profile_group->id] =	isset($_POST[$profile_group->id.'-loop'])? wp_unslash($_POST[$profile_group->id.'-loop']) : array();
+			if ( ! empty( $profile_groups ) ) {
+				foreach ( $profile_groups as $profile_group ) {
+					$bpmpd_fields_loops[ $profile_group->id ] = isset( $_POST[ $profile_group->id . '-loop' ] ) ? wp_unslash( $_POST[ $profile_group->id . '-loop' ] ) : array();
 				}
 			}
 
-			if(is_array($bpmpd_fields_loops)){
-				foreach ($bpmpd_fields_loops as $loop_key => $bpmpd_fields_loop) {
-					foreach($bpmpd_fields_loop as $loop_key_1 => $loop_value){
-						filter_var($bpmpd_fields_loops[$loop_key][$loop_key_1], FILTER_SANITIZE_NUMBER_INT);
+			if ( is_array( $bpmpd_fields_loops ) ) {
+				foreach ( $bpmpd_fields_loops as $loop_key => $bpmpd_fields_loop ) {
+					foreach ( $bpmpd_fields_loop as $loop_key_1 => $loop_value ) {
+						filter_var( $bpmpd_fields_loops[ $loop_key ][ $loop_key_1 ], FILTER_SANITIZE_NUMBER_INT );
 					}
 				}
 			}
 
 			$bpmpd_fields_single_members = array();
 
-			if(!empty($profile_groups)){
-				foreach ($profile_groups as $profile_group) {
-					$bpmpd_fields_single_members[$profile_group->id] =	isset($_POST[$profile_group->id.'-single'])? wp_unslash($_POST[$profile_group->id.'-single']) : array();
+			if ( ! empty( $profile_groups ) ) {
+				foreach ( $profile_groups as $profile_group ) {
+					$bpmpd_fields_single_members[ $profile_group->id ] = isset( $_POST[ $profile_group->id . '-single' ] ) ? wp_unslash( $_POST[ $profile_group->id . '-single' ] ) : array();
 				}
 			}
 
-			if(is_array($bpmpd_fields_single_members)){
-				foreach ($bpmpd_fields_single_members as $single_key => $bpmpd_fields_single_member) {
-					foreach($bpmpd_fields_single_member as $single_key_1 => $single_value_){
-						filter_var($bpmpd_fields_single_members[$single_key][$single_key_1], FILTER_SANITIZE_NUMBER_INT);
+			if ( is_array( $bpmpd_fields_single_members ) ) {
+				foreach ( $bpmpd_fields_single_members as $single_key => $bpmpd_fields_single_member ) {
+					foreach ( $bpmpd_fields_single_member as $single_key_1 => $single_value_ ) {
+						filter_var( $bpmpd_fields_single_members[ $single_key ][ $single_key_1 ], FILTER_SANITIZE_NUMBER_INT );
 					}
 				}
 			}
 
 			// Updating database
 
-			$bpmpd_fields_db =array();
-			array_push($bpmpd_fields_db, $bpmpd_fields_loops);
-			array_push($bpmpd_fields_db, $bpmpd_fields_single_members);
-			update_option($this->plugin_name,$bpmpd_fields_db);
+			$bpmpd_fields_db = array();
+			array_push( $bpmpd_fields_db, $bpmpd_fields_loops );
+			array_push( $bpmpd_fields_db, $bpmpd_fields_single_members );
+			update_option( $this->plugin_name, $bpmpd_fields_db );
 
-		endif;?>
+		endif;
+		?>
 
-		<?php $bpmpd_fields_get_db = get_option($this->plugin_name);
+		<?php
+		$bpmpd_fields_get_db = get_option( $this->plugin_name );
 
 			$mergerd_loop_array = array();
-			if( !empty( $bpmpd_fields_get_db ) ) {
-				foreach($bpmpd_fields_get_db['0'] as $merged_loop_value){
-					$mergerd_loop_array = array_merge($mergerd_loop_array,$merged_loop_value);
-				}
-
-				$mergerd_single_array = array();
-
-				foreach($bpmpd_fields_get_db['1'] as $merged_single_value){
-					$mergerd_single_array = array_merge($mergerd_single_array,$merged_single_value);
-				}
+		if ( ! empty( $bpmpd_fields_get_db ) ) {
+			foreach ( $bpmpd_fields_get_db['0'] as $merged_loop_value ) {
+				$mergerd_loop_array = array_merge( $mergerd_loop_array, $merged_loop_value );
 			}
-			?>
+
+			$mergerd_single_array = array();
+
+			foreach ( $bpmpd_fields_get_db['1'] as $merged_single_value ) {
+				$mergerd_single_array = array_merge( $mergerd_single_array, $merged_single_value );
+			}
+		}
+		?>
 			<form method="post" action="" class="bpmmd-general-settings">
-				<?php wp_nonce_field('bpmpd_fields_nonce_action','bpmpd_fields_nonce_value'); ?>
-				<h2><?php _e('Select fields from each group to show on members loop page',$this->plugin_name);?>
+				<?php wp_nonce_field( 'bpmpd_fields_nonce_action', 'bpmpd_fields_nonce_value' ); ?>
+				<h2><?php _e( 'Select fields from each group to show on members loop page', $this->plugin_name ); ?>
 				</h2>
 				<table class="form-table" >
 				<?php
-				if(!empty($profile_groups)):
-					$i=1;
-					foreach( $profile_groups as $profile_group): ?>
+				if ( ! empty( $profile_groups ) ) :
+					$i = 1;
+					foreach ( $profile_groups as $profile_group ) :
+						?>
 						<tr>
-							<th scope="row"><label class="field-description" ><?php _e( 'Field Group : ', BPMMD_TEXT_DOMAIN ); echo $profile_group->name; ?></label></th>
+							<th scope="row"><label class="field-description" >
+							<?php
+							_e( 'Field Group : ', BPMMD_TEXT_DOMAIN );
+							echo $profile_group->name;
+							?>
+							</label></th>
 							<td>
-								<?php if (!empty($profile_group->fields)):?>
+								<?php if ( ! empty( $profile_group->fields ) ) : ?>
 									<table class="bpmpd-fields">
-									<?php foreach ($profile_group->fields as $field):?>
+									<?php foreach ( $profile_group->fields as $field ) : ?>
 										<tr>
 											<td>
-												<input type="checkbox" name="<?php echo $profile_group->id?>-loop[]" value="<?php echo $field->id; ?>" <?php echo (isset($bpmpd_fields_get_db['0']) && in_array($field->id,$mergerd_loop_array))?'checked':'';?>>
-												<?php echo $field->name;?>
+												<input type="checkbox" name="<?php echo $profile_group->id; ?>-loop[]" value="<?php echo $field->id; ?>" <?php echo ( isset( $bpmpd_fields_get_db['0'] ) && in_array( $field->id, $mergerd_loop_array ) ) ? 'checked' : ''; ?>>
+												<?php echo $field->name; ?>
 											</td>
 										</tr>
 									<?php endforeach; ?>
 
 									</table>
 
-								<?php endif; $i++; ?>
+									<?php
+								endif;
+								$i++;
+								?>
 							</td>
 						</tr>
-					<?php endforeach;?>
+					<?php endforeach; ?>
 				</table>
-				<h2><?php _e('Select fields from each group to show on single members page', BPMMD_TEXT_DOMAIN ); ?>
+				<h2><?php _e( 'Select fields from each group to show on single members page', BPMMD_TEXT_DOMAIN ); ?>
 				</h2>
 				<table class="form-table" >
-					<?php $j=1;
-						foreach( $profile_groups as $profile_group ): ?>
+					<?php
+					$j = 1;
+					foreach ( $profile_groups as $profile_group ) :
+						?>
 							<tr>
-								<th scope="row"><label class="field-description" ><?php _e( 'Field Group : ', BPMMD_TEXT_DOMAIN ); echo $profile_group->name; ?></label></th>
+								<th scope="row"><label class="field-description" >
+								<?php
+								_e( 'Field Group : ', BPMMD_TEXT_DOMAIN );
+								echo $profile_group->name;
+								?>
+								</label></th>
 								<td>
-								<?php if (!empty($profile_group->fields)):?>
+								<?php if ( ! empty( $profile_group->fields ) ) : ?>
 									<table class="bpmpd-fields">
-									<?php foreach ($profile_group->fields as $field): ?>
+									<?php foreach ( $profile_group->fields as $field ) : ?>
 										<tr>
 											<td>
-												<input type="checkbox" name="<?php echo $profile_group->id;?>-single[]" value="<?php echo $field->id; ?>" <?php echo (isset($bpmpd_fields_get_db['1']) && in_array($field->id,$mergerd_single_array))?'checked':'';?>><?php echo $field->name;?>
+												<input type="checkbox" name="<?php echo $profile_group->id; ?>-single[]" value="<?php echo $field->id; ?>" <?php echo ( isset( $bpmpd_fields_get_db['1'] ) && in_array( $field->id, $mergerd_single_array ) ) ? 'checked' : ''; ?>><?php echo $field->name; ?>
 											</td>
 										</tr>
 									<?php endforeach; ?>
 									</table>
-								<?php endif; $j++;?>
+									<?php
+								endif;
+								$j++;
+								?>
 								</td>
 							</tr>
-					<?php endforeach;?>
-			  	</table>
-		  	<?php endif;?>
-		  	<div class="bpmpd-submit">
-			  	<input type="submit" name="bpmpd-fields-submit" value="<?php _e( 'Save', BPMMD_TEXT_DOMAIN ); ?>" class="button-primary">
+					<?php endforeach; ?>
+				  </table>
+			<?php endif; ?>
+			  <div class="bpmpd-submit">
+				  <input type="submit" name="bpmpd-fields-submit" value="<?php _e( 'Save', BPMMD_TEXT_DOMAIN ); ?>" class="button-primary">
 			</div>
 		</form>
-	<?php }
+		<?php
+	}
 
-	public function bpmmd_faq_section() { ?>
+	public function bpmmd_faq_section() {
+		?>
 		<div id="bpmmd_faq_accordion">
 			<h3><?php _e( 'Is this plugin requires another plugin?', BPMMD_TEXT_DOMAIN ); ?></h3>
 			<div>
@@ -314,6 +398,7 @@ class Bp_Modify_Member_Directory_Admin {
 				</p>
 			</div>
 		</div>
-	<?php }
+		<?php
+	}
 
 }

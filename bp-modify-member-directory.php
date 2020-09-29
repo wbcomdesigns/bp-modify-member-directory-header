@@ -30,24 +30,13 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( ! defined( 'BPMMD_TEXT_DOMAIN' ) ) {
-    define( 'BPMMD_TEXT_DOMAIN', 'bp-modify-member-directory' );
+	define( 'BPMMD_TEXT_DOMAIN', 'bp-modify-member-directory' );
 }
-
-/**
- *  Checking for buddypress whether it is active or not
- */
-if (!in_array('buddypress/bp-loader.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-	 $active_plugins =  apply_filters('active_plugins', get_option('active_plugins'));
-	 $bp_filter_plugin = plugin_basename(__FILE__);
-	 $bp_filter_key = array_search($bp_filter_plugin,$active_plugins);
-	 if(isset($bp_filter_key) && in_array($bp_filter_plugin, $active_plugins)) {
-	 	unset($active_plugins[$bp_filter_key]);
-	 	add_action('admin_notices', 'buddypress_for_bp_modify_not_active_notice');
-	 	update_option('active_plugins', $active_plugins);
-	 	if(isset($_GET['activate']))
-	 		unset($_GET['activate']);
-	 }
-	 return;
+if ( ! defined( 'BPMMD_PLUGIN_URL' ) ) {
+	define( 'BPMMD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+if ( ! defined( 'BPMMD_PLUGIN_PATH' ) ) {
+	define( 'BPMMD_PLUGIN_PATH', plugin_dir_url( __FILE__ ) );
 }
 
 /**
@@ -66,30 +55,58 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-bp-modify-member-directory
  * @since    1.0.0
  */
 function run_bp_modify_member_directory() {
-
 	$plugin = new Bp_Modify_Member_Directory();
 	$plugin->run();
+}
+
+add_action( 'plugins_loaded', 'bp_modify_member_directory_init' );
+/**
+ * Checking for buddypress whether it is active or not
+ *
+ * @since    1.0.0
+ */
+function bp_modify_member_directory_init() {
+	if ( ! class_exists( 'BuddyPress' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		add_action( 'admin_notices', 'bp_modify_member_directory_plugin_admin_notice' );
+
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+		return;
+	} else {
+		run_bp_modify_member_directory();
+	}
 
 }
 
-function buddypress_for_bp_modify_not_active_notice() {?>
-    <div class="error notice">
-        <p><?php _e('To work BP Modify Member Directory, BuddyPress should be activated', BPMMD_TEXT_DOMAIN );?></p>
-    </div>
-<?php }
+/**
+ * Function to show admin notice when BuddyPress is deactivate.
+ */
+function bp_modify_member_directory_plugin_admin_notice() {
+	$bpmdh_plugin = 'BP Modify Member Directory/Header';
+	$bp_plugin    = 'BuddyPress';
+
+	echo '<div class="error"><p>'
+	. sprintf( __( '%1$s is ineffective as it requires %2$s to be installed and active.', 'buddypress-profile-pro' ), '<strong>' . $wbbpp_plugin . '</strong>', '<strong>' . $bp_plugin . '</strong>' )
+	. '</p></div>';
+	if ( isset( $_GET['activate'] ) ) {
+		unset( $_GET['activate'] );
+	}
+}
 
 /**
  * Adding setting link on plugin listing page
  */
-add_filter('plugin_action_links_'.plugin_basename(__FILE__),'bp_modify_member_plugin_actions', 10, 2);
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'bp_modify_member_plugin_actions', 10, 2 );
 
 /**
  * @desc Adds the Settings link to the plugin activate/deactivate page
  */
-function bp_modify_member_plugin_actions($links, $file) {
-	$settings_link = '<a href="' . admin_url("admin.php?page=bp-modify-member-directory") . '">' . __('Settings', BPMMD_TEXT_DOMAIN ) . '</a>';
-	array_unshift($links, $settings_link); // before other links
+function bp_modify_member_plugin_actions( $links, $file ) {
+	$settings_link = '<a href="' . admin_url( 'admin.php?page=bp-modify-member-directory' ) . '">' . __( 'Settings', BPMMD_TEXT_DOMAIN ) . '</a>';
+	array_unshift( $links, $settings_link ); // before other links
 	return $links;
 }
-
-run_bp_modify_member_directory();
