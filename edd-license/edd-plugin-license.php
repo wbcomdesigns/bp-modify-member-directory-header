@@ -91,7 +91,7 @@ function edd_wbcom_BPMMD_activate_license() {
 			if ( is_wp_error( $response ) ) {
 				$message = $response->get_error_message();
 			} else {
-				$message = __( 'An error occurred, please try again.', 'bp-xprofile-export-import' );
+				$message = __( 'An error occurred, please try again.', 'bp-modify-member-directory' );
 			}
 		} else {
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
@@ -100,34 +100,34 @@ function edd_wbcom_BPMMD_activate_license() {
 				switch ( $license_data->error ) {
 					case 'expired':
 						$message = sprintf(
-							__( 'Your license key expired on %s.', 'bp-xprofile-export-import' ),
+							__( 'Your license key expired on %s.', 'bp-modify-member-directory' ),
 							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
 						);
 						break;
 
 					case 'revoked':
-						$message = __( 'Your license key has been disabled.', 'bp-xprofile-export-import' );
+						$message = __( 'Your license key has been disabled.', 'bp-modify-member-directory' );
 						break;
 
 					case 'missing':
-						$message = __( 'Invalid license.', 'bp-xprofile-export-import' );
+						$message = __( 'Invalid license.', 'bp-modify-member-directory' );
 						break;
 
 					case 'invalid':
 					case 'site_inactive':
-						$message = __( 'Your license is not active for this URL.', 'bp-xprofile-export-import' );
+						$message = __( 'Your license is not active for this URL.', 'bp-modify-member-directory' );
 						break;
 
 					case 'item_name_mismatch':
-						$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'bp-xprofile-export-import' ), EDD_BPMMD_ITEM_NAME );
+						$message = sprintf( __( 'This appears to be an invalid license key for %s.', 'bp-modify-member-directory' ), EDD_BPMMD_ITEM_NAME );
 						break;
 
 					case 'no_activations_left':
-						$message = __( 'Your license key has reached its activation limit.', 'bp-xprofile-export-import' );
+						$message = __( 'Your license key has reached its activation limit.', 'bp-modify-member-directory' );
 						break;
 
 					default:
-						$message = __( 'An error occurred, please try again.', 'bp-xprofile-export-import' );
+						$message = __( 'An error occurred, please try again.', 'bp-modify-member-directory' );
 						break;
 				}
 			}
@@ -200,7 +200,7 @@ function edd_wbcom_BPMMD_deactivate_license() {
 			if ( is_wp_error( $response ) ) {
 				$message = $response->get_error_message();
 			} else {
-				$message = __( 'An error occurred, please try again.', 'bp-xprofile-export-import' );
+				$message = __( 'An error occurred, please try again.', 'bp-modify-member-directory' );
 			}
 
 			$base_url = admin_url( 'admin.php?page=' . EDD_BPMMD_PLUGIN_LICENSE_PAGE );
@@ -322,11 +322,11 @@ function wbcom_BPMMD_render_license_section() {
 	<table class="form-table wb-license-form-table mobile-license-headings">
 		<thead>
 			<tr>
-				<th class="wb-product-th"><?php esc_html_e( 'Product', 'bp-xprofile-export-import' ); ?></th>
-				<th class="wb-version-th"><?php esc_html_e( 'Version', 'bp-xprofile-export-import' ); ?></th>
-				<th class="wb-key-th"><?php esc_html_e( 'Key', 'bp-xprofile-export-import' ); ?></th>
-				<th class="wb-status-th"><?php esc_html_e( 'Status', 'bp-xprofile-export-import' ); ?></th>
-				<th class="wb-action-th"><?php esc_html_e( 'Action', 'bp-xprofile-export-import' ); ?></th>
+				<th class="wb-product-th"><?php esc_html_e( 'Product', 'bp-modify-member-directory' ); ?></th>
+				<th class="wb-version-th"><?php esc_html_e( 'Version', 'bp-modify-member-directory' ); ?></th>
+				<th class="wb-key-th"><?php esc_html_e( 'Key', 'bp-modify-member-directory' ); ?></th>
+				<th class="wb-status-th"><?php esc_html_e( 'Status', 'bp-modify-member-directory' ); ?></th>
+				<th class="wb-action-th"><?php esc_html_e( 'Action', 'bp-modify-member-directory' ); ?></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -335,21 +335,21 @@ function wbcom_BPMMD_render_license_section() {
 		<?php settings_fields( 'edd_wbcom_BPMMD_license' ); ?>
 		<table class="form-table wb-license-form-table">
 			<tr>
-				<td class="wb-plugin-name"><?php esc_attr_e( $plugin_data['Name'], 'bp-xprofile-export-import' ); ?></td>
-				<td class="wb-plugin-version"><?php esc_attr_e( $plugin_data['Version'], 'bp-xprofile-export-import' ); ?></td>
-				<td class="wb-plugin-license-key"><input id="edd_wbcom_BPMMD_license_key" name="edd_wbcom_BPMMD_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $license, 'bp-xprofile-export-import' ); ?>" /></td>
-				<td class="wb-license-status <?php echo $status_class; ?>"><?php esc_attr_e( $status_text, 'bp-xprofile-export-import' ); ?></td>
+				<td class="wb-plugin-name"><?php esc_attr_e( $plugin_data['Name'], 'bp-modify-member-directory' ); ?></td>
+				<td class="wb-plugin-version"><?php esc_attr_e( $plugin_data['Version'], 'bp-modify-member-directory' ); ?></td>
+				<td class="wb-plugin-license-key"><input id="edd_wbcom_BPMMD_license_key" name="edd_wbcom_BPMMD_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $license, 'bp-modify-member-directory' ); ?>" /></td>
+				<td class="wb-license-status <?php echo $status_class; ?>"><?php esc_attr_e( $status_text, 'bp-modify-member-directory' ); ?></td>
 				<td class="wb-license-action">
 					<?php
 					if ( $status !== false && $status == 'valid' ) {
 						wp_nonce_field( 'edd_wbcom_BPMMD_nonce', 'edd_wbcom_BPMMD_nonce' );
 						?>
-						<input type="submit" class="button-secondary" name="edd_BPMMD_license_deactivate" value="<?php _e( 'Deactivate License', 'bp-xprofile-export-import' ); ?>"/>
+						<input type="submit" class="button-secondary" name="edd_BPMMD_license_deactivate" value="<?php _e( 'Deactivate License', 'bp-modify-member-directory' ); ?>"/>
 						<?php
 					} else {
 						wp_nonce_field( 'edd_wbcom_BPMMD_nonce', 'edd_wbcom_BPMMD_nonce' );
 						?>
-						<input type="submit" class="button-secondary" name="edd_BPMMD_license_activate" value="<?php _e( 'Activate License', 'bp-xprofile-export-import' ); ?>"/>
+						<input type="submit" class="button-secondary" name="edd_BPMMD_license_activate" value="<?php _e( 'Activate License', 'bp-modify-member-directory' ); ?>"/>
 					<?php } ?>
 				</td>
 			</tr>

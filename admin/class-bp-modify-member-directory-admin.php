@@ -126,11 +126,11 @@ class Bp_Modify_Member_Directory_Admin {
 		 */
 
 		if ( empty( $GLOBALS['admin_page_hooks']['wbcomplugins'] ) ) {
-			add_menu_page( esc_html__( 'WB Plugins', 'bp-xprofile-export-import' ), esc_html__( 'WB Plugins', 'bp-xprofile-export-import' ), 'manage_options', 'wbcomplugins', array( $this, 'bp_modify_profile_directory_setting_page' ), 'dashicons-lightbulb', 59 );
-			add_submenu_page( 'wbcomplugins', esc_html__( 'General', 'bp-xprofile-export-import' ), esc_html__( 'General', 'bp-xprofile-export-import' ), 'manage_options', 'wbcomplugins' );
+			add_menu_page( esc_html__( 'WB Plugins', 'bp-modify-member-directory' ), esc_html__( 'WB Plugins', 'bp-modify-member-directory' ), 'manage_options', 'wbcomplugins', array( $this, 'bp_modify_profile_directory_setting_page' ), 'dashicons-lightbulb', 59 );
+			add_submenu_page( 'wbcomplugins', esc_html__( 'General', 'bp-modify-member-directory' ), esc_html__( 'General', 'bp-modify-member-directory' ), 'manage_options', 'wbcomplugins' );
 		}
 
-		add_submenu_page( 'wbcomplugins', esc_html__( 'BP Modify Member Directory/Header', 'bp-xprofile-export-import' ), esc_html__( 'BP Modify Member Directory/Header', 'bp-xprofile-export-import' ), 'manage_options', 'bpxp-member-export-import', array( $this, 'bp_modify_profile_directory_setting_page' ) );
+		add_submenu_page( 'wbcomplugins', esc_html__( 'BP Modify Member Directory/Header', 'bp-modify-member-directory' ), esc_html__( 'BP Modify Member Directory/Header', 'bp-modify-member-directory' ), 'manage_options', 'bpxp-member-export-import', array( $this, 'bp_modify_profile_directory_setting_page' ) );
 
 	}
 
@@ -148,14 +148,14 @@ class Bp_Modify_Member_Directory_Admin {
 		<div class="blpro-header">
 			<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 			<h1 class="wbcom-plugin-heading">
-				<?php esc_html_e( 'BuddyPress Member Export Import Settings', 'bp-xprofile-export-import' ); ?>
+				<?php esc_html_e( 'BuddyPress Member Export Import Settings', 'bp-modify-member-directory' ); ?>
 			</h1>
 		</div>
 		<div class="wbcom-admin-settings-page">
 		<?php
 		$bpmmd_tabs = array(
-			'bpmmd_general_settings' => __( 'General', BPMMD_TEXT_DOMAIN ),
-			'bpmmd_faq'              => __( 'FAQ', BPMMD_TEXT_DOMAIN ),
+			'bpmmd_general_settings' => __( 'General', 'bp-modify-member-directory' ),
+			'bpmmd_faq'              => __( 'FAQ', 'bp-modify-member-directory' ),
 		);
 
 		$tab_html = '<div class="wbcom-tabs-section"><h2 class="nav-tab-wrapper">';
