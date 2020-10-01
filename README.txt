@@ -3,7 +3,7 @@ Contributors: wbcomdesigns
 Tags: buddypress,member-directory, header, member loop
 Donate link: https://wbcomdesigns.com/donate/
 Requires at least: 4.7
-Tested up to: 4.8.1
+Tested up to: 5.5.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -29,7 +29,7 @@ Greater than BP v2.6+
 
 == Screenshots ==
 
-1. Plugin Listing- is the screen that shows the plugin name displayed in plugin listing page. 
+1. Plugin Listing- is the screen that shows the plugin name displayed in plugin listing page.
 screenshot-1.png
 2. Plugin Options - is the screen that shows actual settings screen on BP Modify Member Directory/Header Setting Page.
 screenshot-2.png

@@ -74,6 +74,7 @@ class Bp_Modify_Member_Directory {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->bpmh_initialize_updater();
 
 	}
 
@@ -123,15 +124,15 @@ class Bp_Modify_Member_Directory {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-plugin-settings.php';
 
 		/**
-		 * The class responsible for license page for easy updation.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'edd-license/edd-plugin-license.php';
-
-		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-bp-modify-member-directory-public.php';
+
+		/**
+		 * The file is responsible update checker
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'bpmh-update-checker/plugin-update-checker.php';
 
 		$this->loader = new Bp_Modify_Member_Directory_Loader();
 
@@ -187,6 +188,20 @@ class Bp_Modify_Member_Directory {
 		$this->loader->add_action( 'bp_directory_members_actions', $plugin_public, 'member_loop_modification_function', 999 );
 
 		$this->loader->add_action( 'bp_before_member_header_meta', $plugin_public, 'member_header_modification_function' );
+	}
+
+	/**
+	 * Initialize plugin updater
+	 *
+	 * @since    1.0.0
+	 */
+	public function bpmh_initialize_updater() {
+		$bpmh_export_impoer_updater = Puc_v4_Factory::buildUpdateChecker(
+			'https://github.com/wbcomdesigns/bp-modify-member-directory-header',
+			BPMMD_PLUGIN_FILE,
+			'bp-modify-member-directory-header'
+		);
+
 	}
 
 	/**
