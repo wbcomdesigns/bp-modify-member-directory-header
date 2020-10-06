@@ -112,7 +112,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'bp_modify_mem
  * @desc Adds the Settings link to the plugin activate/deactivate page
  */
 function bp_modify_member_plugin_actions( $links, $file ) {
-	$settings_link = '<a href="' . admin_url( 'admin.php?page=bp-modify-member-directory' ) . '">' . __( 'Settings', 'bp-modify-member-directory' ) . '</a>';
+	$settings_link = '<a href="' . admin_url( 'admin.php?page=bp-modify-modify-directory' ) . '">' . __( 'Settings', 'bp-modify-member-directory' ) . '</a>';
 	array_unshift( $links, $settings_link ); // before other links
 	return $links;
 }
