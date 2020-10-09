@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 09:41:36+00:00\n"
+"POT-Creation-Date: 2020-10-09 13:55:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,7 +99,7 @@ msgid ""
 msgstr ""
 
 #: admin/partials/bp-modify-member-directory-genral-display.php:81
-msgid "Select fields from each group to show on members loop page"
+msgid "Select fields from each group to show on member's loop page"
 msgstr ""
 
 #: admin/partials/bp-modify-member-directory-genral-display.php:92
@@ -108,7 +108,7 @@ msgid "Field Group : "
 msgstr ""
 
 #: admin/partials/bp-modify-member-directory-genral-display.php:120
-msgid "Select fields from each group to show on single members page"
+msgid "Select fields from each group to show on single member's page"
 msgstr ""
 
 #: admin/partials/bp-modify-member-directory-genral-display.php:155
@@ -123,7 +123,6 @@ msgstr ""
 #: admin/wbcom/templates/wbcom-license-page.php:20
 #: admin/wbcom/templates/wbcom-license-page.php:33
 #: admin/wbcom/templates/wbcom-license-page.php:70
-#: edd-license/edd-plugin-license.php:325
 msgid "Product"
 msgstr ""
 
@@ -131,7 +130,6 @@ msgstr ""
 #: admin/wbcom/templates/wbcom-license-page.php:21
 #: admin/wbcom/templates/wbcom-license-page.php:34
 #: admin/wbcom/templates/wbcom-license-page.php:71
-#: edd-license/edd-plugin-license.php:326
 msgid "Version"
 msgstr ""
 
@@ -139,7 +137,6 @@ msgstr ""
 #: admin/wbcom/templates/wbcom-license-page.php:22
 #: admin/wbcom/templates/wbcom-license-page.php:35
 #: admin/wbcom/templates/wbcom-license-page.php:72
-#: edd-license/edd-plugin-license.php:327
 msgid "Key"
 msgstr ""
 
@@ -147,7 +144,6 @@ msgstr ""
 #: admin/wbcom/templates/wbcom-license-page.php:23
 #: admin/wbcom/templates/wbcom-license-page.php:36
 #: admin/wbcom/templates/wbcom-license-page.php:73
-#: edd-license/edd-plugin-license.php:328
 msgid "Status"
 msgstr ""
 
@@ -155,14 +151,12 @@ msgstr ""
 #: admin/wbcom/templates/wbcom-license-page.php:24
 #: admin/wbcom/templates/wbcom-license-page.php:37
 #: admin/wbcom/templates/wbcom-license-page.php:74
-#: edd-license/edd-plugin-license.php:329
 msgid "Action"
 msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:48
 #: admin/wbcom/templates/wbcom-license-page.php:57
 #: admin/wbcom/templates/wbcom-license-page.php:65
-#: edd-license/edd-plugin-license.php:347
 msgid "Deactivate License"
 msgstr ""
 
@@ -688,53 +682,37 @@ msgstr ""
 msgid "%1$s is ineffective as it requires %2$s to be installed and active."
 msgstr ""
 
-#: edd-license/EDD_BPMMD_Plugin_Updater.php:202
-msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:54
+msgid "View details"
 msgstr ""
 
-#: edd-license/EDD_BPMMD_Plugin_Updater.php:210
-msgid ""
-"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
-"or %5$supdate now%6$s."
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:82
+msgid "More information about %s"
 msgstr ""
 
-#: edd-license/EDD_BPMMD_Plugin_Updater.php:400
-msgid "You do not have permission to install plugin updates"
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:133
+msgid "Check for updates"
 msgstr ""
 
-#: edd-license/EDD_BPMMD_Plugin_Updater.php:400
-msgid "Error"
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:230
+msgid "Unknown update checker status \"%s\""
 msgstr ""
 
-#: edd-license/edd-plugin-license.php:94 edd-license/edd-plugin-license.php:130
-#: edd-license/edd-plugin-license.php:203
-msgid "An error occurred, please try again."
+#: bpmh-update-checker/Puc/v4p10/Vcs/PluginUpdateChecker.php:100
+msgid "There is no changelog available."
 msgstr ""
 
-#: edd-license/edd-plugin-license.php:103
-msgid "Your license key expired on %s."
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:220
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
 msgstr ""
 
-#: edd-license/edd-plugin-license.php:109
-msgid "Your license key has been disabled."
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:222
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
 msgstr ""
 
-#: edd-license/edd-plugin-license.php:113
-msgid "Invalid license."
-msgstr ""
-
-#: edd-license/edd-plugin-license.php:118
-msgid "Your license is not active for this URL."
-msgstr ""
-
-#: edd-license/edd-plugin-license.php:122
-msgid "This appears to be an invalid license key for %s."
-msgstr ""
-
-#: edd-license/edd-plugin-license.php:126
-msgid "Your license key has reached its activation limit."
-msgstr ""
-
-#: edd-license/edd-plugin-license.php:352
-msgid "Activate License"
+#: bpmh-update-checker/Puc/v4p10/Plugin/Ui.php:224
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
 msgstr ""
