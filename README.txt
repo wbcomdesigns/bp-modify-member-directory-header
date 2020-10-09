@@ -4,7 +4,7 @@ Tags: buddypress,member-directory, header, member loop
 Donate link: https://wbcomdesigns.com/donate/
 Requires at least: 4.7
 Tested up to: 5.5.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,5 +40,12 @@ screenshot-4.png
 
 
 == Changelog ==
+
+= 1.0.1 =
+* Added plugin updater
+* Update escaping function
+* Enhancement -  admin UI
+* Fix - Minor bugs 
+
 = 1.0.0 =
-Initial Release
+* Initial Release
