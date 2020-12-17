@@ -15,7 +15,7 @@
  * Plugin Name:       BP Modify Member Directory/Header
  * Plugin URI:        https://wbcomdesigns.com/plugins/bp-modify-member-directory/
  * Description:       It will add option for admin to select which xprofile field will be displayed inside member loop and on profile header
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Wbcom Designs
  * Author URI:        http://www.wbcomdesigns.com/
  * License:           GPL-2.0+
