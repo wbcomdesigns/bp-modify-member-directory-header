@@ -197,7 +197,7 @@ class Bp_Modify_Member_Directory {
 	 */
 	public function bpmh_initialize_updater() {
 		$bpmh_export_impoer_updater = Puc_v4_Factory::buildUpdateChecker(
-			'https://github.com/wbcomdesigns/bp-modify-member-directory-header',
+			'https://demos.wbcomdesigns.com/exporter/free-plugins/bp-modify-member-directory-header.json',
 			BPMMD_PLUGIN_FILE,
 			'bp-modify-member-directory-header'
 		);
