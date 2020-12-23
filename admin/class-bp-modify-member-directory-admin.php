@@ -130,7 +130,7 @@ class Bp_Modify_Member_Directory_Admin {
 			add_submenu_page( 'wbcomplugins', esc_html__( 'General', 'bp-modify-member-directory' ), esc_html__( 'General', 'bp-modify-member-directory' ), 'manage_options', 'wbcomplugins' );
 		}
 
-		add_submenu_page( 'wbcomplugins', esc_html__( 'BP Modify Member Directory/Header', 'bp-modify-member-directory' ), esc_html__( 'BP Modify Member Directory/Header', 'bp-modify-member-directory' ), 'manage_options', 'bp-modify-modify-directory', array( $this, 'bp_modify_profile_directory_setting_page' ) );
+		add_submenu_page( 'wbcomplugins', esc_html__( 'BP Modify Member Directory/Header', 'bp-modify-member-directory' ), esc_html__( 'BP Modify Member Directory/Header', 'bp-modify-member-directory' ), 'manage_options', 'bp-modify-directory', array( $this, 'bp_modify_profile_directory_setting_page' ) );
 
 	}
 
@@ -148,7 +148,7 @@ class Bp_Modify_Member_Directory_Admin {
 		<div class="blpro-header">
 			<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 			<h1 class="wbcom-plugin-heading">
-				<?php esc_html_e( 'BuddyPress Member Export Import Settings', 'bp-modify-member-directory' ); ?>
+				<?php esc_html_e( 'BP Modify Member Directory/Header Settings', 'bp-modify-member-directory' ); ?>
 			</h1>
 		</div>
 		<div class="wbcom-admin-settings-page">
@@ -161,7 +161,7 @@ class Bp_Modify_Member_Directory_Admin {
 		$tab_html = '<div class="wbcom-tabs-section"><h2 class="nav-tab-wrapper">';
 		foreach ( $bpmmd_tabs as $bpmmd_tab => $bpmmd_name ) {
 			$class     = ( $bpmmd_tab == $current ) ? 'nav-tab-active' : '';
-			$tab_html .= '<a class="nav-tab ' . $class . '" href="admin.php?page=bp-modify-modify-directory&tab=' . $bpmmd_tab . '">' . $bpmmd_name . '</a>';
+			$tab_html .= '<a class="nav-tab ' . $class . '" href="admin.php?page=bp-modify-directory&tab=' . $bpmmd_tab . '">' . $bpmmd_name . '</a>';
 		}
 		$tab_html .= '</h2></div>';
 		echo $tab_html;
