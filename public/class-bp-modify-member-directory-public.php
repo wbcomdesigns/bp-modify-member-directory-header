@@ -113,7 +113,7 @@ class Bp_Modify_Member_Directory_Public {
 		}?>
 
 		<div class="bpmpd-fields-loop">
-			<ul>
+                    <div class="bpmpd-fields-loop-inner">
 				<?php if(!empty($profile_groups)){
 
 						global $wpdb;
@@ -138,16 +138,16 @@ class Bp_Modify_Member_Directory_Public {
 								if(in_array($profile_field->id,$mergerd_loop_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
 									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
 									if( !empty( $profile_data )  ) { ?>
-									<li><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name." : "; ?></span>
+									<div><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name." : "; ?></span>
 										<span class=members-value-<?php echo $profile_field->name; ?>>
 											<?php bp_member_profile_data('field='.$profile_field->name); ?>
 										</span>
-									</li>
+									</div>
 							<?php } }
 							}
 						}
 					}?>
-			</ul>
+			</div>
 		</div>
 	<?php }
 
@@ -168,7 +168,7 @@ class Bp_Modify_Member_Directory_Public {
 		}?>
 
 		<div class="bpmpd-fields-member">
-			<ul>
+                    <div class="bpmpd-fields-member-inner">
 				<?php if(!empty($profile_groups)){
 
 						global $wpdb;
@@ -201,7 +201,7 @@ class Bp_Modify_Member_Directory_Public {
 							}
 						}
 					}?>
-			</ul>
+			</div>
 		</div>
 	<?php }
 }

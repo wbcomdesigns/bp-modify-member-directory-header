@@ -2,38 +2,14 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
- .bpmpd-fields-loop ul {
-    margin: 0px !important;
-    padding:0 10px 10px;
+
+.bpmpd-fields-loop-inner,
+.bpmpd-fields-member-inner {
+    margin: 10px 0;
+    font-size: 14px;
 }
-.bpmpd-fields-member ul {
-	margin:0;
-}
-.bpmpd-fields-member span {
-    display: initial !important;
-}
-#buddypress .bpmpd-fields-member li {
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-  font-size: 1.1em;
-  padding:1%;
-}
-#buddypress .bpmpd-fields-loop li {
-  font-size: 14px;
-  border: medium none !important;
-  margin: 0;
-  padding:5px 0!important;
-  line-height: normal;
-}
-.bp-nouveau #buddypress .bpmpd-fields-loop li span a{
-    display: inline-block !important;
-    max-width: inherit !important;
-    padding: 0 !important;
-    margin-bottom: 0 !important;
-    border-radius: 0 !important;
-    border: none;
-    background: transparent !important;
-}
-.buddypress-wrap .grid.bp-list>li .action{
-	position: relative;
+
+.bpmpd-fields-loop span a,
+.bpmpd-fields-member span a {
+    display: inline-block;
 }
