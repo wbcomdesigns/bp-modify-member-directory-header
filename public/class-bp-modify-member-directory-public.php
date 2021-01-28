@@ -138,8 +138,8 @@ class Bp_Modify_Member_Directory_Public {
 								if(in_array($profile_field->id,$mergerd_loop_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
 									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
 									if( !empty( $profile_data )  ) { ?>
-									<li><?php echo $profile_field->name." : "; ?>
-										<span>
+									<li><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name." : "; ?></span>
+										<span class=members-value-<?php echo $profile_field->name; ?>>
 											<?php bp_member_profile_data('field='.$profile_field->name); ?>
 										</span>
 									</li>
@@ -192,8 +192,8 @@ class Bp_Modify_Member_Directory_Public {
 								if(in_array($profile_field->id,$mergerd_member_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
 									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
 									if( !empty( $profile_data )  ) { ?>
-									<div><?php echo $profile_field->name." : "; ?>
-										<span>
+									<div><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name." : "; ?></span>
+										<span class=members-value-<?php echo $profile_field->name; ?>>
 											<?php bp_member_profile_data('field='.$profile_field->name); ?>
 										</span>
 									</div>
