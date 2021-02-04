@@ -13,3 +13,13 @@
 .bpmpd-fields-member span a {
     display: inline-block;
 }
+
+body.bp-nouveau #buddypress.buddypress-wrap .bpmpd-fields-loop-inner a {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none;
+}
+
+body.bp-nouveau #buddypress.buddypress-wrap .bpmpd-fields-loop-inner a:hover {
+    background: none;
+}
