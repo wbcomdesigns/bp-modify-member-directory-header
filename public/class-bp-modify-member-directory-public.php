@@ -43,13 +43,13 @@ class Bp_Modify_Member_Directory_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -99,109 +99,200 @@ class Bp_Modify_Member_Directory_Public {
 
 	}
 	/**
-	* Showing xprofile field on members loop page
-	*/
-	public function member_loop_modification_function(){
+	 * Showing xprofile field on members loop page
+	 */
+	public function member_loop_modification_function() {
 
-		$profile_groups = BP_XProfile_Group::get(array('fetch_fields'=>true));
-		$bpmpd_fields_get_db = get_option($this->plugin_name);
-		$mergerd_loop_array = array();
+		$profile_groups      = BP_XProfile_Group::get( array( 'fetch_fields' => true ) );
+		$bpmpd_fields_get_db = get_option( $this->plugin_name );
+		$mergerd_loop_array  = array();
 
-		if(!empty($bpmpd_fields_get_db) && !empty($bpmpd_fields_get_db[0])){
-			foreach($bpmpd_fields_get_db['0'] as $merged_loop_value)
-				$mergerd_loop_array = array_merge($mergerd_loop_array,$merged_loop_value);
-		}?>
-
-		<div class="bpmpd-fields-loop">
-                    <div class="bpmpd-fields-loop-inner">
-				<?php if(!empty($profile_groups)){
-
-						global $wpdb;
-						$user_id = bp_get_member_user_id();
-						$xprofile_data_tbl = $wpdb->prefix."bp_xprofile_data";
-
-						$get_usr_fields_id_qry = "SELECT field_id FROM $xprofile_data_tbl WHERE user_id=$user_id";
-
-						$xprofile_usr_fields_id=$wpdb->get_results( $get_usr_fields_id_qry );
-
-						$xprofile_usr_fields_id_arr = array();
-
-						if(!empty($xprofile_usr_fields_id)){
-							foreach ($xprofile_usr_fields_id as $key => $value)
-								$xprofile_usr_fields_id_arr[] = $value->field_id;
-						}
-
-						foreach($profile_groups as $profile_group){
-
-							foreach($profile_group->fields as $profile_field){
-
-								if(in_array($profile_field->id,$mergerd_loop_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
-									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
-									if( !empty( $profile_data )  ) { ?>
-									<div><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name." : "; ?></span>
-										<span class=members-value-<?php echo $profile_field->name; ?>>
-											<?php bp_member_profile_data('field='.$profile_field->name); ?>
-										</span>
-									</div>
-							<?php } }
-							}
-						}
-					}?>
-			</div>
-		</div>
-	<?php }
-
-	/*
-	*	Showing xprofile fieds on memeber's header cover image
-	*/
-	public function member_header_modification_function(){
-
-		$profile_groups = BP_XProfile_Group::get(array('fetch_fields'=>true));
-		$bpmpd_fields_get_db = get_option($this->plugin_name);
-		$mergerd_member_array = array();
-
-		if(!empty($bpmpd_fields_get_db) && !empty($bpmpd_fields_get_db['1'])){
-
-			foreach($bpmpd_fields_get_db['1'] as $merged_member_value){
-				$mergerd_member_array = array_merge($mergerd_member_array,$merged_member_value);
+		if ( ! empty( $bpmpd_fields_get_db ) && ! empty( $bpmpd_fields_get_db[0] ) ) {
+			foreach ( $bpmpd_fields_get_db['0'] as $merged_loop_value ) {
+				$mergerd_loop_array = array_merge( $mergerd_loop_array, $merged_loop_value );
 			}
 		}?>
 
-		<div class="bpmpd-fields-member">
-                    <div class="bpmpd-fields-member-inner">
-				<?php if(!empty($profile_groups)){
+		<div class="bpmpd-fields-loop">
+					<div class="bpmpd-fields-loop-inner">
+			<?php
+			if ( ! empty( $profile_groups ) ) {
 
-						global $wpdb;
-						$user_id = bp_displayed_user_id();
+					global $wpdb;
+					$user_id                    = bp_get_member_user_id();
+					$xprofile_data_tbl          = $wpdb->prefix . 'bp_xprofile_data';
+					$get_usr_fields_id_qry      = "SELECT field_id FROM $xprofile_data_tbl WHERE user_id=$user_id";
+					$xprofile_usr_fields_id     = $wpdb->get_results( $get_usr_fields_id_qry );
+					$xprofile_usr_fields_id_arr = array();
 
-						$xprofile_data_tbl = $wpdb->prefix."bp_xprofile_data";
-						$get_usr_fields_id_qry = "SELECT field_id FROM $xprofile_data_tbl WHERE user_id=$user_id";
-						$xprofile_usr_fields_id=$wpdb->get_results( $get_usr_fields_id_qry );
+				if ( ! empty( $xprofile_usr_fields_id ) ) {
+					foreach ( $xprofile_usr_fields_id as $key => $value ) {
+						$xprofile_usr_fields_id_arr[] = $value->field_id;
+					}
+				}
 
-						$xprofile_usr_fields_id_arr = array();
+				foreach ( $profile_groups as $profile_group ) {
 
-						if(!empty($xprofile_usr_fields_id)){
-							foreach ($xprofile_usr_fields_id as $key => $value)
-								$xprofile_usr_fields_id_arr[] = $value->field_id;
-						}
+					foreach ( $profile_group->fields as $profile_field ) {
 
-						foreach($profile_groups as $profile_group){
-
-							foreach($profile_group->fields as $profile_field){
-
-								if(in_array($profile_field->id,$mergerd_member_array) && in_array($profile_field->id, $xprofile_usr_fields_id_arr)){
-									$profile_data = bp_get_member_profile_data ('field='.$profile_field->name);
-									if( !empty( $profile_data )  ) { ?>
-									<div><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name." : "; ?></span>
-										<span class=members-value-<?php echo $profile_field->name; ?>>
-											<?php bp_member_profile_data('field='.$profile_field->name); ?>
+						if ( in_array( $profile_field->id, $mergerd_loop_array ) && in_array( $profile_field->id, $xprofile_usr_fields_id_arr ) ) {
+							$profile_data = bp_get_member_profile_data( 'field=' . $profile_field->name );
+							if ( ! empty( $profile_data ) ) {
+								?>
+									<div><span class="member-field-name members-<?php echo isset( $profile_field->name ) ? sanitize_title( $profile_field->name ) : ''; ?>"><?php echo $profile_field->name . ' : '; ?></span>
+										<span class="member-field-value members-value-<?php echo $profile_field->name; ?>">
+										<?php bp_member_profile_data( 'field=' . $profile_field->name ); ?>
 										</span>
 									</div>
-							<?php }	}
+									<?php
 							}
 						}
-					}?>
+					}
+				}
+			}
+			?>
 			</div>
 		</div>
-	<?php }
+			<?php
+	}
+
+	/**
+	 * Showing xprofile field on members loop page
+	 */
+	public function buddyboss_member_loop_modification_function() {
+
+		$profile_groups      = BP_XProfile_Group::get( array( 'fetch_fields' => true ) );
+		$bpmpd_fields_get_db = get_option( $this->plugin_name );
+		$mergerd_loop_array  = array();
+
+		if ( ! empty( $bpmpd_fields_get_db ) && ! empty( $bpmpd_fields_get_db[0] ) ) {
+			foreach ( $bpmpd_fields_get_db['0'] as $merged_loop_value ) {
+				$mergerd_loop_array = array_merge( $mergerd_loop_array, $merged_loop_value );
+			}
+		}
+		?>
+
+		<div class="bpmpd-fields-loop">
+			<div class="bpmpd-fields-loop-inner">
+			<?php
+			if ( ! empty( $profile_groups ) ) {
+				global $wpdb;
+				$user_id                    = bp_get_member_user_id();
+				$xprofile_data_tbl          = $wpdb->prefix . 'bp_xprofile_data';
+				$get_usr_fields_id_qry      = "SELECT field_id FROM $xprofile_data_tbl WHERE user_id=$user_id";
+				$xprofile_usr_fields_id     = $wpdb->get_results( $get_usr_fields_id_qry );
+				$xprofile_usr_fields_id_arr = array();
+
+				if ( ! empty( $xprofile_usr_fields_id ) ) {
+					foreach ( $xprofile_usr_fields_id as $key => $value ) {
+						$xprofile_usr_fields_id_arr[] = $value->field_id;
+					}
+				}
+
+				foreach ( $profile_groups as $profile_group ) {
+					foreach ( $profile_group->fields as $profile_field ) {
+						if ( in_array( $profile_field->id, $mergerd_loop_array ) && in_array( $profile_field->id, $xprofile_usr_fields_id_arr ) ) {
+							$profile_data = bp_get_member_profile_data( 'field=' . $profile_field->name );
+							if ( ! empty( $profile_data ) ) {
+
+								?>
+								<?php if ( 'socialnetworks' != $profile_field->type ) { ?>
+										<div><span class="member-field-name  members-<?php echo isset( $profile_field->name ) ? sanitize_title( $profile_field->name ) : ''; ?>"><?php echo $profile_field->name . ' : '; ?></span>
+											<span class="member-field-value members-value-<?php echo isset( $profile_field->name ) ? sanitize_title( $profile_field->name ) : ''; ?>">
+												<?php bp_member_profile_data( 'field=' . $profile_field->name ); ?>
+											</span>
+										</div>
+									<?php
+								} else {
+									$providers              = bp_xprofile_social_network_provider();
+									$original_option_values = maybe_unserialize( BP_XProfile_ProfileData::get_value_byid( $profile_field->id, $user_id ) );
+									if ( isset( $original_option_values ) && ! empty( $original_option_values ) && is_array( $original_option_values ) ) {
+										?>
+										<div class="social-networks-wrap">
+											<?php
+											foreach ( $original_option_values as $key => $original_option_value ) {
+												if ( '' !== $original_option_value ) {
+													$key = bp_social_network_search_key( $key, $providers );
+													?>
+													<span class="social <?php echo esc_attr( $providers[ $key ]->value ); ?> "><a target="_blank" data-balloon-pos="up" data-balloon="<?php echo esc_attr( $providers[ $key ]->name ); ?> " href="<?php echo esc_url( $original_option_value ); ?>"><?php echo $providers[ $key ]->svg; ?></a></span>
+													<?php
+												}
+											}
+											?>
+										</div>
+										<?php
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			?>
+			</div>
+		</div>
+		<?php
+	}
+
+		/*
+		*   Showing xprofile fieds on memeber's header cover image
+		*/
+	public function member_header_modification_function() {
+
+		$profile_groups       = BP_XProfile_Group::get( array( 'fetch_fields' => true ) );
+		$bpmpd_fields_get_db  = get_option( $this->plugin_name );
+		$mergerd_member_array = array();
+
+		if ( ! empty( $bpmpd_fields_get_db ) && ! empty( $bpmpd_fields_get_db['1'] ) ) {
+
+			foreach ( $bpmpd_fields_get_db['1'] as $merged_member_value ) {
+				$mergerd_member_array = array_merge( $mergerd_member_array, $merged_member_value );
+			}
+		}
+		?>
+
+		<div class="bpmpd-fields-member">
+					<div class="bpmpd-fields-member-inner">
+		<?php
+		if ( ! empty( $profile_groups ) ) {
+
+				global $wpdb;
+				$user_id = bp_displayed_user_id();
+
+				$xprofile_data_tbl      = $wpdb->prefix . 'bp_xprofile_data';
+				$get_usr_fields_id_qry  = "SELECT field_id FROM $xprofile_data_tbl WHERE user_id=$user_id";
+				$xprofile_usr_fields_id = $wpdb->get_results( $get_usr_fields_id_qry );
+
+				$xprofile_usr_fields_id_arr = array();
+
+			if ( ! empty( $xprofile_usr_fields_id ) ) {
+				foreach ( $xprofile_usr_fields_id as $key => $value ) {
+					$xprofile_usr_fields_id_arr[] = $value->field_id;
+				}
+			}
+
+			foreach ( $profile_groups as $profile_group ) {
+
+				foreach ( $profile_group->fields as $profile_field ) {
+
+					if ( in_array( $profile_field->id, $mergerd_member_array ) && in_array( $profile_field->id, $xprofile_usr_fields_id_arr ) ) {
+						$profile_data = bp_get_member_profile_data( 'field=' . $profile_field->name );
+						if ( ! empty( $profile_data ) ) {
+							?>
+									<div><span class=members-<?php echo $profile_field->name; ?>><?php echo $profile_field->name . ' : '; ?></span>
+										<span class=members-value-<?php echo $profile_field->name; ?>>
+															<?php bp_member_profile_data( 'field=' . $profile_field->name ); ?>
+										</span>
+									</div>
+							<?php
+						}
+					}
+				}
+			}
+		}
+		?>
+			</div>
+		</div>
+		<?php
+	}
 }
