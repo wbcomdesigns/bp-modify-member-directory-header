@@ -138,11 +138,11 @@ class Bp_Modify_Member_Directory_Admin {
 	/**
 	 * Callback function for bp member xprofile export import settings page.
 	 *
-	 * @since    1.0.0
-	 * @param    string $current       The current tab.
+	 * @since 1.0.0
+	 * @param string $current The current tab.
 	 */
 	public function bp_modify_profile_directory_setting_page() {
-		$current = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'bpmmd_general_settings';
+		$current = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'bpmmd_general_settings';
 		?>
 		<div class="wrap">
 		<div class="blpro-header">
@@ -160,7 +160,7 @@ class Bp_Modify_Member_Directory_Admin {
 
 		$tab_html = '<div class="wbcom-tabs-section"><h2 class="nav-tab-wrapper">';
 		foreach ( $bpmmd_tabs as $bpmmd_tab => $bpmmd_name ) {
-			$class     = ( $bpmmd_tab == $current ) ? 'nav-tab-active' : '';
+			$class     = ( $bpmmd_tab === $current ) ? 'nav-tab-active' : '';
 			$tab_html .= '<a class="nav-tab ' . $class . '" href="admin.php?page=bp-modify-directory&tab=' . $bpmmd_tab . '">' . $bpmmd_name . '</a>';
 		}
 		$tab_html .= '</h2></div>';
@@ -180,7 +180,7 @@ class Bp_Modify_Member_Directory_Admin {
 	 */
 	public function bpmmd_plugin_option_pages() {
 		if ( isset( $_GET['tab'] ) ) {
-			$bpxp_tab = sanitize_text_field( $_GET['tab'] );
+			$bpxp_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
 		} else {
 			$bpxp_tab = 'general';
 		}
@@ -195,7 +195,7 @@ class Bp_Modify_Member_Directory_Admin {
 	 * @author   Wbcom Designs
 	 */
 	public function bpmmd_include_admin_setting_tabs( $current ) {
-		$bpmmd = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : $current;
+		$bpmmd = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : $current;
 		switch ( $bpmmd ) {
 			case 'bpmmd_general_settings':
 				$this->bpmmd_general_settings_section();
@@ -208,13 +208,17 @@ class Bp_Modify_Member_Directory_Admin {
 				break;
 		}
 	}
-
-
+	/**
+	 * Include admin genral setting tab.
+	 */
 	public function bpmmd_general_settings_section() {
 		include BPMMD_PLUGIN_PATH . 'admin/partials/bp-modify-member-directory-genral-display.php';
 
 	}
 
+	/**
+	 * Include admin faq section tab.
+	 */
 	public function bpmmd_faq_section() {
 		include BPMMD_PLUGIN_PATH . 'admin/partials/bp-modify-member-directory-faq-display.php';
 	}

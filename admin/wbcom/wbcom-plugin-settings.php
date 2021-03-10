@@ -6,6 +6,7 @@
  * @author   Wbcom Designs
  * @package  BuddyPress_Member_Reviews
  */
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -40,7 +41,7 @@ if ( ! class_exists( 'Wbcom_Paid_Plugin_Settings' ) ) {
 		}
 
 		public function wbcom_add_header_license_menu() {
-			$license_page_active = filter_input( INPUT_GET, 'page' ) == 'wbcom-license-page' ? 'is_active' : '';
+			$license_page_active = filter_input( INPUT_GET, 'page' ) === 'wbcom-license-page' ? 'is_active' : '';
 			?>
 			<li class="wb_admin_nav_item <?php echo esc_attr( $license_page_active ); ?>">
 				<a href="<?php echo get_admin_url() . 'admin.php?page=wbcom-license-page'; ?>" id="wb_admin_nav_trigger_support">

@@ -96,7 +96,8 @@ function bp_modify_member_directory_plugin_admin_notice() {
 	$bp_plugin    = 'BuddyPress';
 
 	echo '<div class="error"><p>'
-	. sprintf( __( '%1$s is ineffective as it requires %2$s to be installed and active.', 'bp-modify-member-directory' ), '<strong>' . $wbbpp_plugin . '</strong>', '<strong>' . $bp_plugin . '</strong>' )
+	/* translators: Number of seconds */
+	. sprintf( esc_html__( '%1$s is ineffective as it requires %2$s to be installed and active.', 'bp-modify-member-directory' ), '<strong>' . $wbbpp_plugin . '</strong>', '<strong>' . $bp_plugin . '</strong>' )
 	. '</p></div>';
 	if ( isset( $_GET['activate'] ) ) {
 		unset( $_GET['activate'] );
@@ -109,10 +110,10 @@ function bp_modify_member_directory_plugin_admin_notice() {
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'bp_modify_member_plugin_actions', 10, 2 );
 
 /**
- * @desc Adds the Settings link to the plugin activate/deactivate page
+ * Adds the Settings link to the plugin activate/deactivate page.
  */
 function bp_modify_member_plugin_actions( $links, $file ) {
 	$settings_link = '<a href="' . admin_url( 'admin.php?page=bp-modify-directory' ) . '">' . __( 'Settings', 'bp-modify-member-directory' ) . '</a>';
-	array_unshift( $links, $settings_link ); // before other links
+	array_unshift( $links, $settings_link ); // before other links.
 	return $links;
 }
