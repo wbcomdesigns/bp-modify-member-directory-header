@@ -142,7 +142,7 @@ class Bp_Modify_Member_Directory_Admin {
 	 * @param string $current The current tab.
 	 */
 	public function bp_modify_profile_directory_setting_page() {
-		$current = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'bpmmd_general_settings';
+		$current = isset( $_GET['tab'] ) ? $_GET['tab'] : 'bpmmd_general_settings';
 		?>
 		<div class="wrap">
 		<div class="blpro-header">
@@ -164,7 +164,8 @@ class Bp_Modify_Member_Directory_Admin {
 			$tab_html .= '<a class="nav-tab ' . $class . '" href="admin.php?page=bp-modify-directory&tab=' . $bpmmd_tab . '">' . $bpmmd_name . '</a>';
 		}
 		$tab_html .= '</h2></div>';
-		echo $tab_html;
+		echo wp_kses_post( $tab_html );
+		wp_cache_flush();
 		$this->bpmmd_plugin_option_pages();
 		echo '</div>'; /* closing of div class wbcom-admin-settings-page */
 		echo '</div>'; /* closing div class wrap */
@@ -180,7 +181,7 @@ class Bp_Modify_Member_Directory_Admin {
 	 */
 	public function bpmmd_plugin_option_pages() {
 		if ( isset( $_GET['tab'] ) ) {
-			$bpxp_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
+			$bpxp_tab = $_GET['tab'];
 		} else {
 			$bpxp_tab = 'general';
 		}
@@ -195,7 +196,7 @@ class Bp_Modify_Member_Directory_Admin {
 	 * @author   Wbcom Designs
 	 */
 	public function bpmmd_include_admin_setting_tabs( $current ) {
-		$bpmmd = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : $current;
+		$bpmmd = isset( $_GET['tab'] ) ? $_GET['tab'] : $current;
 		switch ( $bpmmd ) {
 			case 'bpmmd_general_settings':
 				$this->bpmmd_general_settings_section();

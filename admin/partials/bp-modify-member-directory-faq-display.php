@@ -42,7 +42,14 @@
 	<h3><?php esc_html_e( 'Where do I ask for support?', 'bp-modify-member-directory' ); ?></h3>
 	<div>
 		<p>
-			<?php _e( 'Please visit <a href="http://wbcomdesigns.com/contact" rel="nofollow" target="_blank">Wbcom Designs</a> for any query related to plugin and BuddyPress.', 'bp-modify-member-directory' ); ?>
+			<?php
+			/* translators: %s: http://wbcomdesigns.com/contact */
+			$text = sprintf(
+				__( 'Please visit <a href="%s"  rel="nofollow" target="_blank">Wbcom Designs</a> for any query related to plugin and BuddyPress..' ),
+				__( 'http://wbcomdesigns.com/contact' )
+			);
+			echo wp_kses_post( $text );
+			?>
 		</p>
 	</div>
 </div>

@@ -96,8 +96,8 @@ function bp_modify_member_directory_plugin_admin_notice() {
 	$bp_plugin    = 'BuddyPress';
 
 	echo '<div class="error"><p>'
-	/* translators: Number of seconds */
-	. sprintf( esc_html__( '%1$s is ineffective as it requires %2$s to be installed and active.', 'bp-modify-member-directory' ), '<strong>' . $wbbpp_plugin . '</strong>', '<strong>' . $bp_plugin . '</strong>' )
+	/* translators: BP Modify Member Directory/Header and BuddyPress */
+	. sprintf( esc_html__( '%1$s is ineffective as it requires %2$s to be installed and active.', 'bp-modify-member-directory' ), '<strong>' . esc_html( $bpmdh_plugin ) . '</strong>', '<strong>' . esc_html( $bp_plugin ) . '</strong>' )
 	. '</p></div>';
 	if ( isset( $_GET['activate'] ) ) {
 		unset( $_GET['activate'] );

@@ -20,7 +20,7 @@ if ( isset( $_POST['bpmpd-fields-submit'] ) && check_admin_referer( 'bpmpd_field
 
 	if ( ! empty( $profile_groups ) ) {
 		foreach ( $profile_groups as $profile_group ) {
-			$bpmpd_fields_loops[ $profile_group->id ] = isset( $_POST[ $profile_group->id . '-loop' ] ) ? sanitize_text_field( wp_unslash( $_POST[ $profile_group->id . '-loop' ] ) ) : array();
+			$bpmpd_fields_loops[ $profile_group->id ] = isset( $_POST[ $profile_group->id . '-loop' ] ) ? $_POST[ $profile_group->id . '-loop' ] : array();
 		}
 	}
 
@@ -36,7 +36,7 @@ if ( isset( $_POST['bpmpd-fields-submit'] ) && check_admin_referer( 'bpmpd_field
 
 	if ( ! empty( $profile_groups ) ) {
 		foreach ( $profile_groups as $profile_group ) {
-			$bpmpd_fields_single_members[ $profile_group->id ] = isset( $_POST[ $profile_group->id . '-single' ] ) ? sanitize_text_field( wp_unslash( $_POST[ $profile_group->id . '-single' ] ) ) : array();
+			$bpmpd_fields_single_members[ $profile_group->id ] = isset( $_POST[ $profile_group->id . '-single' ] ) ? $_POST[ $profile_group->id . '-single' ] : array();
 		}
 	}
 
@@ -89,7 +89,7 @@ if ( ! empty( $bpmpd_fields_get_db ) ) {
 		<th scope="row"><label class="field-description" >
 			<?php
 			esc_html_e( 'Field Group : ', 'bp-modify-member-directory' );
-			echo esc_html( $profile_group->name );
+			echo $profile_group->name;
 			?>
 		</label></th>
 		<td>
@@ -99,7 +99,7 @@ if ( ! empty( $bpmpd_fields_get_db ) ) {
 				<tr>
 				<td>
 					<input type="checkbox" name="<?php echo esc_attr( $profile_group->id ); ?>-loop[]" value="<?php echo esc_attr( $field->id ); ?>" <?php echo ( isset( $bpmpd_fields_get_db['0'] ) && in_array( $field->id, $mergerd_loop_array ) ) ? 'checked' : ''; ?>>
-					<?php echo esc_html( $field->name ); ?>
+					<?php echo $field->name; ?>
 				</td>
 				</tr>
 			<?php endforeach; ?>
@@ -127,7 +127,7 @@ if ( ! empty( $bpmpd_fields_get_db ) ) {
 			<th scope="row"><label class="field-description" >
 			<?php
 			esc_html_e( 'Field Group : ', 'bp-modify-member-directory' );
-			echo esc_html( $profile_group->name );
+			echo $profile_group->name;
 			?>
 			</label></th>
 			<td>
@@ -151,7 +151,7 @@ if ( ! empty( $bpmpd_fields_get_db ) ) {
 	</table>
 <?php endif; ?>
 	<div class="submit">
-	<input type="submit" name="bpmpd-fields-submit" value="<?php esc_html_e( 'Save Settings', 'bp-modify-member-directory' ); ?>" class="button-primary">
+	<input type="submit" name="bpmpd-fields-submit" value="<?php _e( 'Save Settings', 'bp-modify-member-directory' ); ?>" class="button-primary">
 </div>
 </form>
 </div>
