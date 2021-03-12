@@ -39,9 +39,11 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 		 * @access public
 		 */
 		public function wbcom_do_plugin_action() {
-			$action = ! empty( $_POST['plugin_action'] ) ? $_POST['plugin_action'] : false;
-			$slug   = ! empty( $_POST['plugin_slug'] ) ? $_POST['plugin_slug'] : false;
+			if ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'wbcom_plugin_installer_params' ) ) {
+				$action = ! empty( $_POST['plugin_action'] ) ? sanitize_text_field( wp_unslash( $_POST['plugin_action'] ) ) : false;
 
+				$slug = ! empty( $_POST['plugin_slug'] ) ? sanitize_text_field( wp_unslash( $_POST['plugin_slug'] ) ) : false;
+			}
 			if ( 'install_plugin' === $action ) {
 				$this->wbcom_do_plugin_install( $slug );
 			} elseif ( 'activate_plugin' === $action ) {
@@ -498,6 +500,7 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 					'wbcom_plugin_installer_params',
 					array(
 						'ajax_url'        => admin_url( 'admin-ajax.php' ),
+						'nonce'           => wp_create_nonce( 'ajax-setting-nonce' ),
 						'activate_text'   => esc_html__( 'Activate', 'bp-modify-member-directory' ),
 						'deactivate_text' => esc_html__( 'Deactivate', 'bp-modify-member-directory' ),
 					)
@@ -636,32 +639,32 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 			<div id="wb_admin_header" class="wp-clearfix">
 
 				<div id="wb_admin_logo">
-					<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/logowbcom.png'; ?>">
+					<img src="<?php echo esc_attr( BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/logowbcom.png' ); ?>">
 					<div class="wb_admin_right"></div>
 				</div>
 
 				<nav id="wb_admin_nav">
 					<ul>
 						<li class="wb_admin_nav_item <?php echo esc_attr( $settings_active ); ?>">
-							<a href="<?php echo get_admin_url() . 'admin.php?page=wbcomplugins'; ?>" id="wb_admin_nav_trigger_settings">
+							<a href="<?php echo esc_url( get_admin_url() . 'admin.php?page=wbcomplugins' ); ?>" id="wb_admin_nav_trigger_settings">
 								<i class="fa fa-sliders" aria-hidden="true"></i>
 								<h4><?php esc_html_e( 'Settings', 'bp-modify-member-directory' ); ?></h4>
 							</a>
 						</li>
 						<li class="wb_admin_nav_item <?php echo esc_attr( $plugin_active ); ?>">
-							<a href="<?php echo get_admin_url() . 'admin.php?page=wbcom-plugins-page'; ?>" id="wb_admin_nav_trigger_extensions">
+							<a href="<?php echo esc_url( get_admin_url() . 'admin.php?page=wbcom-plugins-page' ); ?>" id="wb_admin_nav_trigger_extensions">
 								<i class="fa fa-th" aria-hidden="true"></i>
 								<h4><?php esc_html_e( 'Components', 'bp-modify-member-directory' ); ?></h4>
 							</a>
 						</li>
 						<li class="wb_admin_nav_item <?php echo esc_attr( $theme_active ); ?>">
-							<a href="<?php echo get_admin_url() . 'admin.php?page=wbcom-themes-page'; ?>" id="wb_admin_nav_trigger_themes">
+							<a href="<?php echo esc_url( get_admin_url() . 'admin.php?page=wbcom-themes-page' ); ?>" id="wb_admin_nav_trigger_themes">
 								<i class="fa fa-magic" aria-hidden="true"></i>
 								<h4><?php esc_html_e( 'Themes', 'bp-modify-member-directory' ); ?></h4>
 							</a>
 						</li>
 						<li class="wb_admin_nav_item <?php echo esc_attr( $support_active ); ?>">
-							<a href="<?php echo get_admin_url() . 'admin.php?page=wbcom-support-page'; ?>" id="wb_admin_nav_trigger_support">
+							<a href="<?php echo esc_url( get_admin_url() . 'admin.php?page=wbcom-support-page' ); ?>" id="wb_admin_nav_trigger_support">
 								<i class="fa fa-question-circle" aria-hidden="true"></i>
 								<h4><?php esc_html_e( 'Support', 'bp-modify-member-directory' ); ?></h4>
 							</a>
@@ -675,6 +678,9 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 
 	}
 
+	/**
+	 * Wbcom admin setting.
+	 */
 	function instantiate_wbcom_plugin_manager() {
 		new Wbcom_Admin_Settings();
 	}

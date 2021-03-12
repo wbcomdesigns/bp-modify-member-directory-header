@@ -18,6 +18,7 @@ jQuery( document ).ready( function ( event ) {
             dataType: 'json',
             data: {
                 action: 'wbcom_manage_plugin_installation',
+                nonce: ajax-setting-nonce.nonce,
                 plugin_action: action,
                 plugin_slug: thisRef.parent('.activation_button_wrap').siblings( 'input.plugin-slug' ).val()
             },            

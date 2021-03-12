@@ -1,3 +1,13 @@
+<?php
+/**
+ * Wbcom plugin admin support page template.
+ *
+ * @author   Wbcom Designs
+ * @package  bp-modify-member-directory-header
+ * @subpackage admin/wbcom/templates
+ */
+
+?>
 <div class="wrap">
 	<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 	<h4 class="wbcom-plugin-heading"><?php esc_html_e( 'Support', 'bp-modify-member-directory' ); ?></h4>

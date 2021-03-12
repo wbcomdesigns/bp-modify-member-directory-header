@@ -1,3 +1,13 @@
+<?php
+/**
+ * Wbcom plugin admin plugin page template.
+ *
+ * @author   Wbcom Designs
+ * @package  bp-modify-member-directory-header
+ * @subpackage admin/wbcom/templates
+ */
+
+?>
 <div class="wrap">
 	<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 	<?php
@@ -37,8 +47,8 @@
 						<input type="hidden" class="plugin-action" name="plugin-action" value="<?php echo esc_attr( $plugin_action ); ?>">
 						<div class="activation_button_wrap">
 							<a href="" class="wbcom-plugin-action-button wb_btn wb_btn_default" >
-								<i class="<?php echo $toggle_class; ?>"></i>
-								<?php echo $plugin_btn_text; ?>
+								<i class="<?php echo esc_attr( $toggle_class ); ?>"></i>
+								<?php echo esc_attr( $plugin_btn_text ); ?>
 								<i class="fa fa-spinner fa-spin" style="display:none"></i>
 							</a>
 						</div>

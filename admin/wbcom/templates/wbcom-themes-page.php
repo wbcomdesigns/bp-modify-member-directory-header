@@ -1,3 +1,13 @@
+<?php
+/**
+ * Wbcom plugin admin themes page template.
+ *
+ * @author   Wbcom Designs
+ * @package  bp-modify-member-directory-header
+ * @subpackage admin/wbcom/templates
+ */
+
+?>
 <div class="wrap">
 	<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 	<div class="reign-demos-wrapper">
@@ -6,7 +16,7 @@
 			<div class="wbcom-demo-importer">
 				<div class="container">
 					<div class="wbcom-image-wrapper">
-						<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/reign.jpg'; ?>" alt="Avatar" class="image" style="width:100%">
+						<img src="<?php echo esc_attr( BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/reign.jpg' ); ?>" alt="Avatar" class="image" style="width:100%">
 					</div>
 					<div class="wbcom-demo-title">
 						<h2><?php esc_html_e( 'REIGN Community', 'bp-modify-member-directory' ); ?></h2>
@@ -32,7 +42,7 @@
 			<div class="wbcom-demo-importer">
 				<div class="container">
 					<div class="wbcom-image-wrapper">
-						<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/learnmate.jpg'; ?>" alt="Avatar" class="image" style="width:100%">
+						<img src="<?php echo esc_attr( BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/learnmate.jpg' ); ?>" alt="Avatar" class="image" style="width:100%">
 					</div>
 					<div class="wbcom-demo-title">
 						<h2><?php esc_html_e( 'Learnmate', 'bp-modify-member-directory' ); ?></h2>
@@ -58,7 +68,7 @@
 			<div class="wbcom-demo-importer">
 				<div class="container">
 					<div class="wbcom-image-wrapper">
-						<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/storemate.jpg'; ?>" alt="Avatar" class="image" style="width:100%">
+						<img src="<?php echo esc_attr( BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/storemate.jpg' ); ?>" alt="Avatar" class="image" style="width:100%">
 					</div>
 					<div class="wbcom-demo-title">
 						<h2><?php esc_html_e( 'ShopMate Dokan', 'bp-modify-member-directory' ); ?></h2>
@@ -82,7 +92,7 @@
 			<div class="wbcom-demo-importer">
 				<div class="container">
 					<div class="wbcom-image-wrapper">
-						<img src="<?php echo BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/jobmate.jpg'; ?>" alt="Avatar" class="image" style="width:100%">
+						<img src="<?php echo esc_attr( BPMMD_PLUGIN_URL . 'admin/wbcom/assets/imgs/jobmate.jpg' ); ?>" alt="Avatar" class="image" style="width:100%">
 					</div>
 					<div class="wbcom-demo-title">
 						<h2><?php esc_html_e( 'Jobmate Theme', 'bp-modify-member-directory' ); ?></h2>
