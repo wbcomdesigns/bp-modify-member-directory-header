@@ -1,4 +1,4 @@
-=== BP Modify Member Directory/Header ===
+=== BuddyPress Modify Member Directory/Header ===
 Contributors: wbcomdesigns
 Tags: buddypress,member-directory, header, member loop
 Donate link: https://wbcomdesigns.com/donate/
