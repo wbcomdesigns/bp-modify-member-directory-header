@@ -13,3 +13,11 @@
 .bpmpd-fields-member span a {
     display: inline-block;
 }
+ul.members-meta.action {
+    text-align: center;
+    padding:5px !important;
+}
+.members-meta.action .bpmpd-fields-loop-inner div {
+    display: block;
+    padding: 2px 0;
+}
