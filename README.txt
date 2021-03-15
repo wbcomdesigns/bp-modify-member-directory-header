@@ -41,6 +41,9 @@ screenshot-4.png
 
 == Changelog ==
 
+= 1.3.0 =
+* Fix: #10 Member directory UI
+* Fix: (#6) Fix PHPCS issue of wbcom folder
 
 = 1.1.0 =
 * Fix: Added Span class for field name and values.
