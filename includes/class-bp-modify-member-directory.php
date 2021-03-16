@@ -188,6 +188,8 @@ class Bp_Modify_Member_Directory {
 		$this->loader->add_action( 'bp_directory_members_actions', $plugin_public, 'member_loop_modification_function', 999 );
 
 		$this->loader->add_action( 'bp_before_member_header_meta', $plugin_public, 'member_header_modification_function' );
+		/* Disply member xprofile fields on member loop BuddyBoss */
+		$this->loader->add_action( 'bp_member_members_list_item', $plugin_public, 'buddyboss_member_loop_modification_function' );
 	}
 
 	/**
